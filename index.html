@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Литературный вызов: 48 книг мирового канона</title>
+  <title>Литературный вызов: 77 книг мирового канона</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@700&display=swap');
@@ -66,8 +66,8 @@
     <div class="max-w-6xl mx-auto px-4 py-5">
       <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
         <div>
-          <span class="text-xs uppercase tracking-widest text-amber-400 font-semibold">Пересмотренный канон • 6 уровней</span>
-          <h1 class="serif-title text-2xl sm:text-3xl font-bold text-white mt-0.5">Литературный вызов: 48 книг</h1>
+          <span class="text-xs uppercase tracking-widest text-amber-400 font-semibold">Расширенный канон • 6 уровней</span>
+          <h1 class="serif-title text-2xl sm:text-3xl font-bold text-white mt-0.5">Литературный вызов: 77 книг</h1>
         </div>
 
         <!-- Кнопки Шеринга -->
@@ -92,7 +92,7 @@
             <span id="reader-rank" class="px-2.5 py-0.5 rounded-full text-xs font-bold bg-amber-500/20 text-amber-300 border border-amber-500/30">Искатель сюжетов</span>
           </div>
           <div class="text-sm font-semibold text-slate-200">
-            Прочитано: <span id="total-count" class="text-amber-400">0</span> / 48 (<span id="total-percent">0%</span>)
+            Прочитано: <span id="total-count" class="text-amber-400">0</span> / <span id="total-max">77</span> (<span id="total-percent">0%</span>)
           </div>
         </div>
         <div class="w-full h-2.5 bg-slate-800 rounded-full overflow-hidden">
@@ -114,7 +114,7 @@
       <!-- Статус + Поиск -->
       <div class="flex flex-wrap sm:flex-nowrap items-center gap-2">
         <select id="status-filter" onchange="renderBooks()" class="bg-slate-900 border border-slate-700 rounded-xl px-3 py-2 text-xs sm:text-sm text-slate-200 focus:outline-none focus:border-amber-500">
-          <option value="all">Все книги (48)</option>
+          <option value="all">Все книги (77)</option>
           <option value="unread">Не прочитано</option>
           <option value="read">Прочитано</option>
         </select>
@@ -130,16 +130,16 @@
 
   <script>
     const TIERS = [
-      { id: 'Beginner', label: '1. Beginner', badge: 'bg-emerald-500/15 text-emerald-300 border-emerald-500/30', bar: 'bg-emerald-400', desc: 'Прозрачный язык, захватывающий сюжет и универсальные темы.' },
-      { id: 'Amateur', label: '2. Amateur', badge: 'bg-sky-500/15 text-sky-300 border-sky-500/30', bar: 'bg-sky-400', desc: 'Вход в большую классику, глубокий психологизм и авторская оптика.' },
-      { id: 'Intermediate', label: '3. Intermediate', badge: 'bg-indigo-500/15 text-indigo-300 border-indigo-500/30', bar: 'bg-indigo-400', desc: 'Масштабный реализм, умеренный модернизм и плотная символика.' },
-      { id: 'Upper-intermediate', label: '4. Upper-intermediate', badge: 'bg-purple-500/15 text-purple-300 border-purple-500/30', bar: 'bg-purple-400', desc: 'Полифонические глыбы, диалекты, поток сознания и философия.' },
-      { id: 'Expert', label: '5. Expert', badge: 'bg-rose-500/15 text-rose-300 border-rose-500/30', bar: 'bg-rose-400', desc: 'Радикальный модернизм и энциклопедический постмодернизм.' },
-      { id: 'Beast', label: '6. Beast', badge: 'bg-amber-500/20 text-amber-300 border-amber-500/40', bar: 'bg-amber-400', desc: 'Экстремальный предел литературы: тотальный эксперимент и сверхмасштаб.' }
+      { id: 'Beginner', label: '1. Beginner', badge: 'bg-emerald-500/15 text-emerald-300 border-emerald-500/30', bar: 'bg-emerald-400' },
+      { id: 'Amateur', label: '2. Amateur', badge: 'bg-sky-500/15 text-sky-300 border-sky-500/30', bar: 'bg-sky-400' },
+      { id: 'Intermediate', label: '3. Intermediate', badge: 'bg-indigo-500/15 text-indigo-300 border-indigo-500/30', bar: 'bg-indigo-400' },
+      { id: 'Upper-intermediate', label: '4. Upper-intermediate', badge: 'bg-purple-500/15 text-purple-300 border-purple-500/30', bar: 'bg-purple-400' },
+      { id: 'Expert', label: '5. Expert', badge: 'bg-rose-500/15 text-rose-300 border-rose-500/30', bar: 'bg-rose-400' },
+      { id: 'Beast', label: '6. Beast', badge: 'bg-amber-500/20 text-amber-300 border-amber-500/40', bar: 'bg-amber-400' }
     ];
 
     const BOOKS = [
-      // 1. Beginner
+      // 1. Beginner (17)
       { id: 'b1', tier: 'Beginner', title: 'Маленький принц', author: 'Антуан де Сент-Экзюпери', country: 'Франция', feature: 'Философская притча • Предельно ясный и поэтичный язык' },
       { id: 'b2', tier: 'Beginner', title: 'Старик и море', author: 'Эрнест Хемингуэй', country: 'США', feature: 'Метод айсберга • Стоическая драма за простыми фразами' },
       { id: 'b3', tier: 'Beginner', title: 'Скотный двор', author: 'Джордж Оруэлл', country: 'Великобритания', feature: 'Политическая сатира • Прозрачная аллегория тоталитаризма' },
@@ -148,402 +148,15 @@
       { id: 'b6', tier: 'Beginner', title: 'Посторонний', author: 'Альбер Камю', country: 'Франция', feature: 'Экзистенциализм • Короткий роман «телеграфным» стилем' },
       { id: 'b7', tier: 'Beginner', title: 'Капитанская дочка', author: 'Александр Пушкин', country: 'Россия', feature: 'Историческая проза • Эталон чистоты и динамики русского слога' },
       { id: 'b8', tier: 'Beginner', title: 'Над пропастью во ржи', author: 'Джером Д. Сэлинджер', country: 'США', feature: 'Роман взросления • Живая разговорная исповедь' },
+      { id: 'b9', tier: 'Beginner', title: 'Морфий', author: 'Михаил Булгаков', country: 'Россия', feature: 'Автобиографическая повесть • Дневник стремительного распада личности' },
+      { id: 'b10', tier: 'Beginner', title: 'Чемодан', author: 'Сергей Довлатов', country: 'Россия / США', feature: 'Ироничная проза • Восемь историй об эмиграции и советском быте' },
+      { id: 'b11', tier: 'Beginner', title: 'Заповедник', author: 'Сергей Довлатов', country: 'Россия', feature: 'Трагикомедия • Блестящий лаконичный слог и абсурд пушкинского музея' },
+      { id: 'b12', tier: 'Beginner', title: 'Кэрри', author: 'Стивен Кинг', country: 'США', feature: 'Мистический триллер • Компактный дебют о травле и телекинезе' },
+      { id: 'b13', tier: 'Beginner', title: 'Зелёная миля', author: 'Стивен Кинг', country: 'США', feature: 'Мистическая драма • Пронзительная история о чуде и смертной казни' },
+      { id: 'b14', tier: 'Beginner', title: 'Слушай песню ветра', author: 'Харуки Мураками', country: 'Япония', feature: 'Трилогия Крысы (ч. 1) • Легкий джазовый ритм и летняя меланхолия' },
+      { id: 'b15', tier: 'Beginner', title: 'Пинбол 1973', author: 'Харуки Мураками', country: 'Япония', feature: 'Трилогия Крысы (ч. 2) • Камерная повесть об одиночестве и памяти' },
+      { id: 'b16', tier: 'Beginner', title: 'Шум прибоя', author: 'Юкио Мисима', country: 'Япония', feature: 'Античная пастораль • Самая светлая и прозрачная повесть Мисимы' },
+      { id: 'b17', tier: 'Beginner', title: 'Жизнь на продажу', author: 'Юкио Мисима', country: 'Япония', feature: 'Авантюрный нуар • Ироничный триллер о человеке, продающем свою жизнь' },
 
-      // 2. Amateur
-      { id: 'a1', tier: 'Amateur', title: 'Преступление и наказание', author: 'Федор Достоевский', country: 'Россия', feature: 'Психологический триллер • Идеальная точка входа в мир Достоевского' },
-      { id: 'a2', tier: 'Amateur', title: 'Гордость и предубеждение', author: 'Джейн Остин', country: 'Великобритания', feature: 'Роман нравов • Тонкая ирония и филигранные диалоги' },
-      { id: 'a3', tier: 'Amateur', title: 'Великий Гэтсби', author: 'Фрэнсис Скотт Фицджеральд', country: 'США', feature: 'Символизм эпохи джаза • Компактный, но плотный по образам текст' },
-      { id: 'a4', tier: 'Amateur', title: 'Мастер и Маргарита', author: 'Михаил Булгаков', country: 'Россия', feature: 'Мистика и сатира • Двойная композиция (Москва и Ершалаим)' },
-      { id: 'a5', tier: 'Amateur', title: 'Превращение', author: 'Франц Кафка', country: 'Австро-Венгрия', feature: 'Гротеск и абсурд • Прозрачный протокольный язык с пугающей глубиной' },
-      { id: 'a6', tier: 'Amateur', title: 'Норвежский лес', author: 'Харуки Мураками', country: 'Япония', feature: 'Меланхоличный реализм • Психология утраты и взросления в Токио 1960-х' },
-      { id: 'a7', tier: 'Amateur', title: 'Госпожа Бовари', author: 'Гюстав Флобер', country: 'Франция', feature: 'Классический реализм • Ювелирная работа со стилем и деталью' },
-      { id: 'a8', tier: 'Amateur', title: 'Сто лет одиночества', author: 'Габриэль Гарсиа Маркес', country: 'Колумбия', feature: 'Магический реализм • Плотный мифологический сюжет семи поколений' },
-
-      // 3. Intermediate
-      { id: 'i1', tier: 'Intermediate', title: 'Анна Каренина', author: 'Лев Толстой', country: 'Россия', feature: 'Вершина психологического реализма • Масштабный, но прозрачный по языку роман' },
-      { id: 'i2', tier: 'Intermediate', title: 'Исповедь маски', author: 'Юкио Мисима', country: 'Япония', feature: 'Экзистенциальный модернизм • Беспощадный самоанализ и эстетика смерти' },
-      { id: 'i3', tier: 'Intermediate', title: 'Хроники Заводной Птицы', author: 'Харуки Мураками', country: 'Япония', feature: 'Сюрреалистический лабиринт • Переплетение метафизики и военной истории' },
-      { id: 'i4', tier: 'Intermediate', title: 'Степной волк', author: 'Герман Гессе', country: 'Швейцария', feature: 'Интеллектуальный роман • Психоанализ Юнга и кризис европейского духа' },
-      { id: 'i5', tier: 'Intermediate', title: 'Одиссея', author: 'Гомер', country: 'Древняя Греция', feature: 'Античный эпос • Гекзаметр, нелинейная структура и мифологический код' },
-      { id: 'i6', tier: 'Intermediate', title: 'Дон Кихот', author: 'Мигель де Сервантес', country: 'Испания', feature: 'Родоначальник романа • Два больших тома, вставные новеллы и рефлексия о вымысле' },
-      { id: 'i7', tier: 'Intermediate', title: 'Лолита', author: 'Владимир Набоков', country: 'США', feature: 'Языковая виртуозность • Ненадежный рассказчик и сотня литературных шарад' },
-      { id: 'i8', tier: 'Intermediate', title: 'Кровавый меридиан', author: 'Кормак Маккарти', country: 'США', feature: 'Философский антивестерн • Библейский архаичный синтаксис и онтология насилия' },
-
-      // 4. Upper-intermediate
-      { id: 'u1', tier: 'Upper-intermediate', title: 'Братья Карамазовы', author: 'Федор Достоевский', country: 'Россия', feature: 'Философская полифония • Теодицея, Великий инквизитор и предельная глубина идей' },
-      { id: 'u2', tier: 'Upper-intermediate', title: 'Тихий Дон', author: 'Михаил Шолохов', country: 'Россия', feature: 'Трагическая эпопея в 4 томах • Сложнейший донской диалект и исторический масштаб' },
-      { id: 'u3', tier: 'Upper-intermediate', title: 'Война и мир', author: 'Лев Толстой', country: 'Россия', feature: 'Монументальная эпопея • 550+ персонажей, двуязычие и историософские трактаты' },
-      { id: 'u4', tier: 'Upper-intermediate', title: 'Золотой храм', author: 'Юкио Мисима', country: 'Япония', feature: 'Философский модернизм • Дзен-буддийские коаны и одержимость разрушением красоты' },
-      { id: 'u5', tier: 'Upper-intermediate', title: 'Волшебная гора', author: 'Томас Манн', country: 'Германия', feature: 'Философский роман идей • Многостраничные диспуты о гуманизме, болезни и времени' },
-      { id: 'u6', tier: 'Upper-intermediate', title: 'Божественная комедия', author: 'Данте Алигьери', country: 'Италия', feature: 'Средневековая сумма • Терцины, требующие чтения со словарем теологии и истории' },
-      { id: 'u7', tier: 'Upper-intermediate', title: 'Шум и ярость', author: 'Уильям Фолкнер', country: 'США', feature: 'Высокий модернизм • Сломанная хронология и радикальный поток сознания' },
-      { id: 'u8', tier: 'Upper-intermediate', title: 'Имя розы', author: 'Умберто Эко', country: 'Италия', feature: 'Семиотический лабиринт • Латынь, медиевистика, история ересей и теория знаков' },
-
-      // 5. Expert
-      { id: 'e1', tier: 'Expert', title: 'Улисс', author: 'Джеймс Джойс', country: 'Ирландия', feature: 'Вершина модернизма • 18 глав в разных стилях и тотальная деконструкция романа' },
-      { id: 'e2', tier: 'Expert', title: 'В поисках утраченного времени', author: 'Марсель Пруст', country: 'Франция', feature: 'Семитомный цикл (3000+ стр.) • Гипнотический синтаксис и микроскопия памяти' },
-      { id: 'e3', tier: 'Expert', title: 'Радуга тяготения', author: 'Томас Пинчон', country: 'США', feature: 'Постмодернистский колосс • 400 персонажей, баллистика Фау-2, высшая математика и паранойя' },
-      { id: 'e4', tier: 'Expert', title: 'Бесконечная шутка', author: 'Дэвид Фостер Уоллес', country: 'США', feature: 'Мегароман (1000+ стр.) • Нелинейный пазл о зависимости с 388 концевыми сносками' },
-      { id: 'e5', tier: 'Expert', title: 'Человек без свойств', author: 'Роберт Музиль', country: 'Австрия', feature: 'Роман-эссе • Растворение сюжета в сверхточном анализе кризиса европейского сознания' },
-      { id: 'e6', tier: 'Expert', title: 'Смерть Вергилия', author: 'Герман Брох', country: 'Австрия', feature: 'Радикальный лирический монолог • 500 страниц вязкого предсмертного потока сознания' },
-      { id: 'e7', tier: 'Expert', title: 'Ада, или Отрада', author: 'Владимир Набоков', country: 'США', feature: 'Герметичный шедевр • Трехъязычные каламбуры и шифры на альтернативной планете Антитерра' },
-      { id: 'e8', tier: 'Expert', title: 'Петербург', author: 'Андрей Белый', country: 'Россия', feature: 'Вершина русского символизма • Ритмизованная орнаментальная проза и звукопись' },
-
-      // 6. Beast
-      { id: 'x1', tier: 'Beast', title: 'Поминки по Финнегану', author: 'Джеймс Джойс', country: 'Ирландия', feature: 'Абсолютный предел языка • Закольцованный текст-сновидение на гибриде 60+ языков' },
-      { id: 'x2', tier: 'Beast', title: 'Сон Цеттеля', author: 'Арно Шмидт', country: 'Германия', feature: 'Типографский монстр • 1330 страниц формата А3 в 3 колонки о психоанализе и Эдгаре По' },
-      { id: 'x3', tier: 'Beast', title: 'Кантос', author: 'Эзра Паунд', country: 'США', feature: '50-летний поэтический коллаж • 800 страниц иероглифов, цитат и шифров без сюжета' },
-      { id: 'x4', tier: 'Beast', title: 'Женщины и мужчины', author: 'Джозеф Макэлрой', country: 'США', feature: 'Постмодернистский монолит • 1200 страниц непроницаемого научно-поэтического синтаксиса' },
-      { id: 'x5', tier: 'Beast', title: 'Жизнь способ употребления', author: 'Жорж Перек', country: 'Франция', feature: 'Комбинаторный роман-пазл • Написан по алгоритму хода коня и латинского биквадрата' },
-      { id: 'x6', tier: 'Beast', title: 'Узнавания', author: 'Уильям Гэддис', country: 'США', feature: 'Предтеча постмодернизма • 950 страниц неатрибутированных диалогов и теологической эрудиции' },
-      { id: 'x7', tier: 'Beast', title: 'Эдем, Эдем, Эдем', author: 'Пьер Гийота', country: 'Франция', feature: 'Экстремальный авангард • Одно непрерывное предложение без точек и распад грамматики' },
-      { id: 'x8', tier: 'Beast', title: 'Махабхарата', author: 'Вьяса (традиц.)', country: 'Древняя Индия', feature: 'Сверхмасштабный эпос (18 книг) • В 10 раз длиннее «Илиады» и «Одиссеи» вместе взятых' }
-    ];
-
-    const STORAGE_KEY = 'lit_canon_48_v2';
-    let state = {}; // { [id]: { read: boolean, rating: number, note: string } }
-    let activeTier = 'ALL';
-    let isViewingShared = false;
-
-    function init() {
-      const saved = localStorage.getItem(STORAGE_KEY);
-      if (saved) {
-        try { state = JSON.parse(saved); } catch (e) { state = {}; }
-      }
-
-      // Проверяем, есть ли в URL параметр ?p= или #p=
-      const urlParams = new URLSearchParams(window.location.search);
-      const hashParams = new URLSearchParams(window.location.hash.replace(/^#/, ''));
-      const sharedCode = urlParams.get('p') || hashParams.get('p');
-
-      if (sharedCode) {
-        const decoded = decodeProgressCode(sharedCode);
-        if (decoded) {
-          state = decoded;
-          isViewingShared = true;
-          document.getElementById('shared-banner').classList.remove('hidden');
-        }
-      }
-
-      renderTierTabs();
-      updateDashboard();
-      renderBooks();
-    }
-
-    function saveState() {
-      if (isViewingShared) {
-        isViewingShared = false;
-        document.getElementById('shared-banner').classList.add('hidden');
-      }
-      localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
-      updateUrlHashSilently();
-      updateDashboard();
-    }
-
-    // Компактная кодировка прочитанных книг и оценок: b1.5,a1.4,u1
-    function encodeProgressCode() {
-      const parts = [];
-      BOOKS.forEach(b => {
-        const item = state[b.id];
-        if (item && item.read) {
-          parts.push(item.rating ? `${b.id}.${item.rating}` : b.id);
-        }
-      });
-      return parts.join('-');
-    }
-
-    function decodeProgressCode(rawInput) {
-      if (!rawInput) return null;
-      let clean = rawInput.trim();
-      // Если вставили полную ссылку — достаем параметр p=
-      if (clean.includes('p=')) {
-        const match = clean.match(/[?#&]p=([^&#\s]+)/);
-        if (match && match[1]) clean = decodeURIComponent(match[1]);
-      }
-      const validIds = new Set(BOOKS.map(b => b.id));
-      const newState = {};
-      const tokens = clean.split(/[-,]/);
-      let foundAny = false;
-
-      tokens.forEach(tok => {
-        const [id, ratingStr] = tok.trim().split('.');
-        if (validIds.has(id)) {
-          foundAny = true;
-          const rating = parseInt(ratingStr, 10);
-          newState[id] = {
-            read: true,
-            rating: (!isNaN(rating) && rating >= 1 && rating <= 5) ? rating : 0,
-            note: ''
-          };
-        }
-      });
-      return foundAny ? newState : null;
-    }
-
-    function updateUrlHashSilently() {
-      const code = encodeProgressCode();
-      try {
-        if (code) {
-          history.replaceState(null, '', `#p=${code}`);
-        } else {
-          history.replaceState(null, '', window.location.pathname + window.location.search);
-        }
-      } catch (e) {}
-    }
-
-    function getRankTitle(count) {
-      if (count === 0) return 'Чистый лист (0/48)';
-      if (count < 8) return 'Искатель сюжетов';
-      if (count < 16) return 'Посвященный читатель';
-      if (count < 24) return 'Знаток классики';
-      if (count < 32) return 'Магистр полифонии';
-      if (count < 40) return 'Покоритель модернизма';
-      if (count < 48) return 'Деконструктор реальности';
-      return 'Абсолютный Левиафан (48/48)';
-    }
-
-    function updateDashboard() {
-      const readCount = BOOKS.filter(b => state[b.id]?.read).length;
-      const pct = Math.round((readCount / BOOKS.length) * 100);
-
-      document.getElementById('total-count').textContent = readCount;
-      document.getElementById('total-percent').textContent = `${pct}%`;
-      document.getElementById('total-bar').style.width = `${pct}%`;
-      document.getElementById('reader-rank').textContent = getRankTitle(readCount);
-
-      const tierBarsContainer = document.getElementById('tier-bars');
-      tierBarsContainer.innerHTML = TIERS.map(t => {
-        const tierBooks = BOOKS.filter(b => b.tier === t.id);
-        const done = tierBooks.filter(b => state[b.id]?.read).length;
-        const tierPct = Math.round((done / tierBooks.length) * 100);
-        return `
-          <div class="bg-slate-900/90 border border-slate-800 rounded-xl p-2.5">
-            <div class="flex items-center justify-between text-xs mb-1.5">
-              <span class="font-semibold text-slate-300 truncate">${t.id}</span>
-              <span class="text-slate-400 font-mono">${done}/8</span>
-            </div>
-            <div class="w-full h-1.5 bg-slate-800 rounded-full overflow-hidden">
-              <div class="h-full ${t.bar} transition-all duration-300" style="width: ${tierPct}%"></div>
-            </div>
-          </div>
-        `;
-      }).join('');
-    }
-
-    function renderTierTabs() {
-      const container = document.getElementById('tier-tabs');
-      const allBtn = `
-        <button onclick="setTier('ALL')" class="px-3.5 py-1.5 rounded-xl text-xs sm:text-sm font-semibold whitespace-nowrap transition ${
-          activeTier === 'ALL' ? 'bg-amber-500 text-slate-950' : 'bg-slate-900 text-slate-300 hover:bg-slate-800 border border-slate-800'
-        }">Все уровни</button>
-      `;
-      const tierBtns = TIERS.map(t => `
-        <button onclick="setTier('${t.id}')" class="px-3.5 py-1.5 rounded-xl text-xs sm:text-sm font-semibold whitespace-nowrap transition ${
-          activeTier === t.id ? 'bg-amber-500 text-slate-950' : 'bg-slate-900 text-slate-300 hover:bg-slate-800 border border-slate-800'
-        }">${t.label}</button>
-      `).join('');
-      container.innerHTML = allBtn + tierBtns;
-    }
-
-    function setTier(tierId) {
-      activeTier = tierId;
-      renderTierTabs();
-      renderBooks();
-    }
-
-    function toggleRead(id) {
-      if (!state[id]) state[id] = { read: false, rating: 0, note: '' };
-      state[id].read = !state[id].read;
-      saveState();
-      renderBooks();
-    }
-
-    function setRating(id, rating) {
-      if (!state[id]) state[id] = { read: true, rating: 0, note: '' };
-      state[id].rating = state[id].rating === rating ? 0 : rating;
-      if (state[id].rating > 0) state[id].read = true;
-      saveState();
-      renderBooks();
-    }
-
-    function updateNote(id, value) {
-      if (!state[id]) state[id] = { read: false, rating: 0, note: '' };
-      state[id].note = value;
-      saveState();
-    }
-
-    function renderBooks() {
-      const statusFilter = document.getElementById('status-filter').value;
-      const query = document.getElementById('search-input').value.trim().toLowerCase();
-      const container = document.getElementById('books-container');
-
-      const filtered = BOOKS.filter(b => {
-        if (activeTier !== 'ALL' && b.tier !== activeTier) return false;
-        const isRead = !!state[b.id]?.read;
-        if (statusFilter === 'read' && !isRead) return false;
-        if (statusFilter === 'unread' && isRead) return false;
-        if (query) {
-          const hay = `${b.title} ${b.author} ${b.country} ${b.feature}`.toLowerCase();
-          if (!hay.includes(query)) return false;
-        }
-        return true;
-      });
-
-      if (filtered.length === 0) {
-        container.innerHTML = `
-          <div class="col-span-full text-center py-12 bg-slate-900/40 border border-slate-800 rounded-2xl text-slate-400">
-            По вашему фильтру книг не найдено.
-          </div>
-        `;
-        return;
-      }
-
-      container.innerHTML = filtered.map(b => {
-        const item = state[b.id] || { read: false, rating: 0, note: '' };
-        const tierObj = TIERS.find(t => t.id === b.tier);
-
-        const starsHtml = [1, 2, 3, 4, 5].map(star => `
-          <button onclick="setRating('${b.id}', ${star})" class="text-base transition transform hover:scale-110 ${
-            star <= (item.rating || 0) ? 'text-amber-400' : 'text-slate-600 hover:text-slate-400'
-          }" title="Оценить на ${star}">★</button>
-        `).join('');
-
-        return `
-          <div class="rounded-2xl border transition-all p-4 flex flex-col justify-between ${
-            item.read
-              ? 'bg-slate-900/90 border-amber-500/40 shadow-lg shadow-amber-500/5'
-              : 'bg-slate-900/40 border-slate-800 hover:border-slate-700'
-          }">
-            <div>
-              <div class="flex items-start justify-between gap-3">
-                <label class="flex items-start gap-3 cursor-pointer select-none flex-1">
-                  <input type="checkbox" ${item.read ? 'checked' : ''} onchange="toggleRead('${b.id}')"
-                    class="mt-1 w-5 h-5 rounded-md accent-amber-500 cursor-pointer shrink-0" />
-                  <div>
-                    <div class="flex flex-wrap items-center gap-2">
-                      <span class="px-2 py-0.5 text-[11px] font-semibold rounded-md border ${tierObj.badge}">${b.tier}</span>
-                      <span class="text-xs text-slate-400">${b.country}</span>
-                    </div>
-                    <h3 class="text-base sm:text-lg font-bold mt-1 ${item.read ? 'line-through text-slate-400' : 'text-white'}">
-                      ${b.title}
-                    </h3>
-                    <p class="text-xs sm:text-sm font-medium text-amber-400/90">${b.author}</p>
-                  </div>
-                </label>
-                <div class="flex items-center gap-0.5 shrink-0">${starsHtml}</div>
-              </div>
-              <p class="text-xs text-slate-300 mt-3 pl-8 leading-relaxed">${b.feature}</p>
-            </div>
-
-            <div class="mt-3 pl-8">
-              <input type="text" value="${(item.note || '').replace(/"/g, '&quot;')}"
-                oninput="updateNote('${b.id}', this.value)"
-                placeholder="Ваша заметка или любимая цитата..."
-                class="w-full bg-slate-950/60 border border-slate-800/80 rounded-lg px-3 py-1.5 text-xs text-slate-200 placeholder-slate-600 focus:outline-none focus:border-amber-500/60" />
-            </div>
-          </div>
-        `;
-      }).join('');
-    }
-
-    function copyShareLink() {
-      const code = encodeProgressCode();
-      const baseUrl = window.location.href.split('?')[0].split('#')[0];
-      const shareUrl = code ? `${baseUrl}?p=${code}` : baseUrl;
-
-      // Если открыто локально или внутри песочницы (about:srcdoc), даем и ссылку, и код
-      const isSandbox = baseUrl.startsWith('about:') || baseUrl.startsWith('blob:') || baseUrl.startsWith('data:');
-      const textToCopy = isSandbox
-        ? `Мой код прогресса в «Литературном вызове 48 книг»: ${code || 'пока 0'} (вставь через кнопку «Импорт»)`
-        : shareUrl;
-
-      navigator.clipboard.writeText(textToCopy).then(() => {
-        showToast(isSandbox ? 'Код прогресса скопирован! Друг может вставить его через «Импорт»' : 'Ссылка с вашим прогрессом скопирована!');
-      });
-    }
-
-    function exportTextSummary() {
-      const readBooks = BOOKS.filter(b => state[b.id]?.read);
-      const rank = getRankTitle(readBooks.length);
-
-      let lines = [
-        `📚 Литературный вызов: ${readBooks.length} / 48 (${Math.round((readBooks.length / 48) * 100)}%)`,
-        `🏆 Ранг: ${rank}`,
-        ``
-      ];
-
-      TIERS.forEach(t => {
-        const tierBooks = BOOKS.filter(b => b.tier === t.id);
-        const done = tierBooks.filter(b => state[b.id]?.read);
-        lines.push(`${t.label}: ${done.length}/8`);
-        done.forEach(b => {
-          const stars = state[b.id]?.rating ? ` (${'★'.repeat(state[b.id].rating)})` : '';
-          lines.push(`  ✅ ${b.title} — ${b.author}${stars}`);
-        });
-      });
-
-      const code = encodeProgressCode();
-      if (code) {
-        lines.push(``, `🔑 Код моего прогресса: ${code}`);
-      }
-
-      navigator.clipboard.writeText(lines.join('\n')).then(() => {
-        showToast('Текстовая сводка скопирована для отправки в чат!');
-      });
-    }
-
-    function openImportModal() {
-      document.getElementById('import-input').value = '';
-      document.getElementById('import-modal').classList.remove('hidden');
-    }
-
-    function closeImportModal() {
-      document.getElementById('import-modal').classList.add('hidden');
-    }
-
-    function applyImportCode() {
-      const val = document.getElementById('import-input').value;
-      const decoded = decodeProgressCode(val);
-      if (!decoded) {
-        showToast('Не удалось распознать код или ссылку');
-        return;
-      }
-      state = decoded;
-      isViewingShared = true;
-      document.getElementById('shared-banner').classList.remove('hidden');
-      closeImportModal();
-      updateDashboard();
-      renderBooks();
-      showToast('Чужой прогресс загружен для просмотра!');
-    }
-
-    function acceptSharedProgress() {
-      saveState();
-      showToast('Прогресс сохранен как ваш собственный!');
-    }
-
-    function resetToOwnProgress() {
-      const saved = localStorage.getItem(STORAGE_KEY);
-      state = saved ? JSON.parse(saved) : {};
-      isViewingShared = false;
-      document.getElementById('shared-banner').classList.add('hidden');
-      history.replaceState(null, '', window.location.pathname);
-      updateDashboard();
-      renderBooks();
-      showToast('Возвращен ваш личный список');
-    }
-
-    function showToast(msg) {
-      const toast = document.getElementById('toast');
-      document.getElementById('toast-text').textContent = msg;
-      toast.classList.remove('hidden');
-      clearTimeout(window.__toastTimer);
-      window.__toastTimer = setTimeout(() => {
-        toast.classList.add('hidden');
-      }, 3200);
-    }
-
-    init();
-  </script>
-</body>
-</html>
+      // 2. Amateur (19)
+      { id: 'a1', tier: '
