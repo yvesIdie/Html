@@ -28,7 +28,7 @@
     }
   </style>
 </head>
-<body class="min-h-screen pb-12 selection:bg-amber-200 selection:text-slate-900">
+<body class="min-h-screen pb-16 selection:bg-amber-200 selection:text-slate-900">
 
   <!-- Уведомление -->
   <div id="toast" class="fixed bottom-4 right-4 z-50 hidden bg-slate-900 text-white font-semibold px-4 py-2 rounded-xl shadow-xl text-xs flex items-center gap-2">
@@ -59,35 +59,35 @@
     </div>
   </div>
 
-  <!-- Компактная шапка (занимает минимум экрана) -->
-  <header class="border-b border-slate-200 bg-white/90 backdrop-blur sticky top-0 z-30">
+  <!-- Компактная шапка -->
+  <header class="border-b border-slate-200 bg-white/95 backdrop-blur sticky top-0 z-30 shadow-xs">
     <div class="max-w-6xl mx-auto px-3 py-2">
       <div class="flex items-center justify-between gap-2">
         <div class="min-w-0">
-          <h1 class="serif-title text-base sm:text-xl font-bold text-slate-900 truncate">Литературный вызов: 200 книг</h1>
+          <h1 class="serif-title text-base sm:text-lg font-bold text-slate-900 truncate">Литературный вызов: 200 книг</h1>
         </div>
         <div class="flex items-center gap-1.5 shrink-0">
-          <button onclick="copyShareLink()" class="px-2.5 py-1.5 rounded-lg bg-amber-600 hover:bg-amber-700 text-white font-semibold text-xs transition">🔗 Ссылка</button>
-          <button onclick="exportTextSummary()" class="px-2.5 py-1.5 rounded-lg bg-slate-100 hover:bg-slate-200 text-slate-700 font-medium text-xs border border-slate-200 transition">📋 Текст</button>
-          <button onclick="openImportModal()" class="px-2 py-1.5 rounded-lg bg-slate-100 hover:bg-slate-200 text-slate-600 font-medium text-xs border border-slate-200 transition">📥</button>
+          <button onclick="copyShareLink()" class="px-2.5 py-1 rounded-lg bg-amber-600 hover:bg-amber-700 text-white font-semibold text-xs transition">🔗 Ссылка</button>
+          <button onclick="exportTextSummary()" class="px-2.5 py-1 rounded-lg bg-slate-100 hover:bg-slate-200 text-slate-700 font-medium text-xs border border-slate-200 transition">📋 Текст</button>
+          <button onclick="openImportModal()" class="px-2 py-1 rounded-lg bg-slate-100 hover:bg-slate-200 text-slate-600 font-medium text-xs border border-slate-200 transition">📥</button>
         </div>
       </div>
 
       <!-- Мини-прогресс -->
-      <div class="mt-2 flex items-center justify-between gap-3 text-xs bg-slate-50 border border-slate-200 rounded-lg px-2.5 py-1.5">
+      <div class="mt-1.5 flex items-center justify-between gap-3 text-xs bg-slate-50 border border-slate-200 rounded-lg px-2.5 py-1">
         <div class="flex items-center gap-2 truncate">
-          <span id="reader-rank" class="font-bold text-amber-800 bg-amber-100 px-2 py-0.5 rounded text-[11px] truncate">Искатель</span>
+          <span id="reader-rank" class="font-bold text-amber-800 bg-amber-100 px-2 py-0.5 rounded text-[10px] truncate">Искатель</span>
           <span class="text-slate-500 hidden sm:inline">Прочитано:</span>
           <span class="font-semibold text-slate-800"><span id="total-count">0</span> / <span id="total-max">200</span> (<span id="total-percent">0%</span>)</span>
         </div>
-        <div class="w-32 sm:w-48 h-1.5 bg-slate-200 rounded-full overflow-hidden shrink-0">
+        <div class="w-28 sm:w-44 h-1.5 bg-slate-200 rounded-full overflow-hidden shrink-0">
           <div id="total-bar" class="h-full bg-amber-600 transition-all duration-300" style="width: 0%"></div>
         </div>
       </div>
     </div>
   </header>
 
-  <!-- Панель фильтров и мини-шкалы уровней -->
+  <!-- Панель фильтров -->
   <section class="max-w-6xl mx-auto px-3 pt-3">
     <div class="flex flex-col gap-2">
       <!-- Табы уровней -->
@@ -112,20 +112,20 @@
 
   <script>
     const TIERS = [
-      { id: 'Beginner', label: '1. Beginner', badge: 'bg-emerald-50 text-emerald-700 border-emerald-200', bar: 'bg-emerald-500' },
-      { id: 'Amateur', label: '2. Amateur', badge: 'bg-sky-50 text-sky-700 border-sky-200', bar: 'bg-sky-500' },
-      { id: 'Intermediate', label: '3. Intermediate', badge: 'bg-indigo-50 text-indigo-700 border-indigo-200', bar: 'bg-indigo-500' },
-      { id: 'Upper-intermediate', label: '4. Upper-intermediate', badge: 'bg-purple-50 text-purple-700 border-purple-200', bar: 'bg-purple-500' },
-      { id: 'Expert', label: '5. Expert', badge: 'bg-rose-50 text-rose-700 border-rose-200', bar: 'bg-rose-500' },
-      { id: 'Beast', label: '6. Beast', badge: 'bg-amber-50 text-amber-800 border-amber-200', bar: 'bg-amber-500' }
+      { id: 'Beginner', label: '1. Beginner', badge: 'bg-emerald-50 text-emerald-700 border-emerald-200' },
+      { id: 'Amateur', label: '2. Amateur', badge: 'bg-sky-50 text-sky-700 border-sky-200' },
+      { id: 'Intermediate', label: '3. Intermediate', badge: 'bg-indigo-50 text-indigo-700 border-indigo-200' },
+      { id: 'Upper-intermediate', label: '4. Upper-intermediate', badge: 'bg-purple-50 text-purple-700 border-purple-200' },
+      { id: 'Expert', label: '5. Expert', badge: 'bg-rose-50 text-rose-700 border-rose-200' },
+      { id: 'Beast', label: '6. Beast', badge: 'bg-amber-50 text-amber-800 border-amber-200' }
     ];
 
-    // База из 200 произведений с рекомендациями для сложных книг
+    // Полный массив из 200 произведений
     const BOOKS = [
-      // --- BEGINNER (35 книг) ---
+      // --- BEGINNER (33 книги) ---
       { id: 'b1', tier: 'Beginner', title: 'Маленький принц', author: 'Антуан де Сент-Экзюпери', country: 'Франция', feature: 'Философская притча • Ясный язык' },
       { id: 'b2', tier: 'Beginner', title: 'Старик и море', author: 'Эрнест Хемингуэй', country: 'США', feature: 'Метод айсберга • Стоическая драма' },
-      { id: 'b3', tier: 'Beginner', title: 'Скотный двор', author: 'Джордж Оруэлл', country: 'Великобритания', feature: 'Политическая сатира • Аллегория' },
+      { id: 'b3', tier: 'Beginner', title: 'Скотный двор', author: 'Джордж Оруэлл', country: 'Великобритания', feature: 'Политическая сатира' },
       { id: 'b4', tier: 'Beginner', title: '451 градус по Фаренгейту', author: 'Рэй Брэдбери', country: 'США', feature: 'Динамичная антиутопия' },
       { id: 'b5', tier: 'Beginner', title: 'Портрет Дориана Грея', author: 'Оскар Уайльд', country: 'Великобритания', feature: 'Эстетизм и мистика' },
       { id: 'b6', tier: 'Beginner', title: 'Посторонний', author: 'Альбер Камю', country: 'Франция', feature: 'Экзистенциализм' },
@@ -141,25 +141,23 @@
       { id: 'b16', tier: 'Beginner', title: 'Шум прибоя', author: 'Юкио Мисима', country: 'Япония', feature: 'Античная пастораль' },
       { id: 'b17', tier: 'Beginner', title: 'Жизнь на продажу', author: 'Юкио Мисима', country: 'Япония', feature: 'Авантюрный нуар' },
       { id: 'b18', tier: 'Beginner', title: 'Станционный смотритель', author: 'Александр Пушкин', country: 'Россия', feature: 'Маленький человек' },
-      { id: 'b19', tier: 'Beginner', title: 'Белые ночи', author: 'Федор Достоевский', country: 'Россия', feature: 'Петербургская сентиментальная история' },
+      { id: 'b19', tier: 'Beginner', title: 'Белые ночи', author: 'Федор Достоевский', country: 'Россия', feature: 'Сентиментальная история' },
       { id: 'b20', tier: 'Beginner', title: 'Гранатовый браслет', author: 'Александр Куприн', country: 'Россия', feature: 'История о чистой любви' },
       { id: 'b21', tier: 'Beginner', title: 'Вишневый сад', author: 'Антон Чехов', country: 'Россия', feature: 'Классическая драматургия' },
       { id: 'b22', tier: 'Beginner', title: 'Чайка по имени Джонатан Ливингстон', author: 'Ричард Бах', country: 'США', feature: 'Притча о свободе' },
       { id: 'b23', tier: 'Beginner', title: 'Алхимик', author: 'Пауло Коэльо', country: 'Бразилия', feature: 'Философская сказка' },
       { id: 'b24', tier: 'Beginner', title: 'Питер Пен', author: 'Джеймс М. Барри', country: 'Великобритания', feature: 'Сказка о детстве' },
       { id: 'b25', tier: 'Beginner', title: 'Алиса в Стране чудес', author: 'Льюис Кэрролл', country: 'Великобритания', feature: 'Литературный абсурд' },
-      { id: 'b26', tier: 'Beginner', title: 'Три товарища', author: 'Эрих Мария Ремарк', country: 'Германия', feature: 'Роман о дружбе и любви' },
+      { id: 'b26', tier: 'Beginner', title: 'Три товарища', author: 'Эрих Мария Ремарк', country: 'Германия', feature: 'Роман о дружбе' },
       { id: 'b27', tier: 'Beginner', title: 'Собачье сердце', author: 'Михаил Булгаков', country: 'Россия', feature: 'Острая сатира' },
       { id: 'b28', tier: 'Beginner', title: 'Шинель', author: 'Николай Гоголь', country: 'Россия', feature: 'Петербургская повесть' },
       { id: 'b29', tier: 'Beginner', title: 'Побег из Шоушенка', author: 'Стивен Кинг', country: 'США', feature: 'Драма о надежде' },
       { id: 'b30', tier: 'Beginner', title: 'Мцыри', author: 'Михаил Лермонтов', country: 'Россия', feature: 'Романтическая поэма' },
-      { id: 'b31', tier: 'Beginner', title: 'Пятнадцатилетний капитан',- author: 'Жюль Верн', country: 'Франция', feature: 'Приключенческая классика' },
-      { id: 'b32', tier: 'Beginner', title: 'Остров сокровищ', author: 'Роберт Л. Стивенсон', country: 'Великобритания', feature: 'Классика приключений' },
-      { id: 'b33', tier: 'Beginner', title: 'Белый клык', author: 'Джек Лондон', country: 'США', feature: 'Повесть о животных' },
-      { id: 'b34', tier: 'Beginner', title: 'Старая саманная хижина', author: 'Гарриет Бичер-Стоу', country: 'США', feature: 'Социальная драма' },
-      { id: 'b35', tier: 'Beginner', title: 'Приключения Тома Сойера', author: 'Марк Твен', country: 'США', feature: 'Классика детства' },
+      { id: 'b31', tier: 'Beginner', title: 'Остров сокровищ', author: 'Роберт Л. Стивенсон', country: 'Великобритания', feature: 'Классика приключений' },
+      { id: 'b32', tier: 'Beginner', title: 'Белый клык', author: 'Джек Лондон', country: 'США', feature: 'Повесть о животных' },
+      { id: 'b33', tier: 'Beginner', title: 'Приключения Тома Сойера', author: 'Марк Твен', country: 'США', feature: 'Классика детства' },
 
-      // --- AMATEUR (35 книг) ---
+      // --- AMATEUR (33 книги) ---
       { id: 'a1', tier: 'Amateur', title: 'Преступление и наказание', author: 'Федор Достоевский', country: 'Россия', feature: 'Психологический триллер' },
       { id: 'a2', tier: 'Amateur', title: 'Гордость и предубеждение', author: 'Джейн Остин', country: 'Великобритания', feature: 'Роман нравов' },
       { id: 'a3', tier: 'Amateur', title: 'Великий Гэтсби', author: 'Фрэнсис С. Фицджеральд', country: 'США', feature: 'Символизм джаза' },
@@ -183,159 +181,161 @@
       { id: 'a21', tier: 'Amateur', title: 'Отцы и дети', author: 'Иван Тургенев', country: 'Россия', feature: 'Конфликт поколений' },
       { id: 'a22', tier: 'Amateur', title: 'Джейн Эйр', author: 'Шарлотта Бронте', country: 'Великобритания', feature: 'Классический роман' },
       { id: 'a23', tier: 'Amateur', title: 'Грозовой перевал', author: 'Эмили Бронте', country: 'Великобритания', feature: 'Готическая драма' },
-      { id: 'a24', tier: 'Amateur', title: 'Мартин Иден', author: 'Джек Лондон', country: 'США', feature: 'Роман о становлении личности' },
+      { id: 'a24', tier: 'Amateur', title: 'Мартин Иден', author: 'Джек Лондон', country: 'США', feature: 'Становление личности' },
       { id: 'a25', tier: 'Amateur', title: 'Игрок', author: 'Федор Достоевский', country: 'Россия', feature: 'Исследование страсти' },
       { id: 'a26', tier: 'Amateur', title: 'Алые паруса', author: 'Александр Грин', country: 'Россия', feature: 'Романтическая повесть' },
-      { id: 'a27', tier: 'Amateur', title: 'Обезьяний процесс', author: 'Джером Стерн', country: 'США', feature: 'Социальный роман' },
-      { id: 'a28', tier: 'Amateur', title: 'Цветы для Элджернона', author: 'Даниэл Киз', country: 'США', feature: 'Психологическая фантастика' },
-      { id: 'a29', tier: 'Amateur', title: '451 градус по Фаренгейту', author: 'Рэй Брэдбери', country: 'США', feature: 'Антиутопия' },
-      { id: 'a30', tier: 'Amateur', title: 'Заводной апельсин', author: 'Энтони Бёрджесс', country: 'Великобритания', feature: 'Дистопия о насилии' },
-      { id: 'a31', tier: 'Amateur', title: 'Трудно быть богом', author: 'Аркадий и Борис Стругацкие', country: 'СССР', feature: 'Этическая фантастика' },
-      { id: 'a32', tier: 'Amateur', title: 'Удушье', author: 'Чак Паланик', country: 'США', feature: 'Контркультура' },
-      { id: 'a33', tier: 'Amateur', title: 'Бойцовский клуб', author: 'Чак Паланик', country: 'США', feature: 'Сатира на общество потребления' },
-      { id: 'a34', tier: 'Amateur', title: 'Американские боги', author: 'Нил Гейман', country: 'Великобритания', feature: 'Миф и современность' },
-      { id: 'a35', tier: 'Amateur', title: 'Парфюмер', author: 'Патрик Зюскинд', country: 'Германия', feature: 'Исторический триллер' },
+      { id: 'a27', tier: 'Amateur', title: 'Цветы для Элджернона', author: 'Даниэл Киз', country: 'США', feature: 'Психологическая фантастика' },
+      { id: 'a28', tier: 'Amateur', title: 'Заводной апельсин', author: 'Энтони Бёрджесс', country: 'Великобритания', feature: 'Дистопия о насилии' },
+      { id: 'a29', tier: 'Amateur', title: 'Трудно быть богом', author: 'Аркадий и Борис Стругацкие', country: 'СССР', feature: 'Этическая фантастика' },
+      { id: 'a30', tier: 'Amateur', title: 'Удушье', author: 'Чак Паланик', country: 'США', feature: 'Контркультура' },
+      { id: 'a31', tier: 'Amateur', title: 'Бойцовский клуб', author: 'Чак Паланик', country: 'США', feature: 'Сатира на потребительство' },
+      { id: 'a32', tier: 'Amateur', title: 'Американские боги', author: 'Нил Гейман', country: 'Великобритания', feature: 'Миф и современность' },
+      { id: 'a33', tier: 'Amateur', title: 'Парфюмер', author: 'Патрик Зюскинд', country: 'Германия', feature: 'Исторический триллер' },
 
-      // --- INTERMEDIATE (35 книг, с рекомендациями) ---
-      { id: 'i1', tier: 'Intermediate', title: 'Анна Каренина', author: 'Лев Толстой', country: 'Россия', feature: 'Вершина психологического реализма', rec: 'Рекомендуется предварительно освежить контекст пореформенной России 1870-х годов и христианской морали.' },
+      // --- INTERMEDIATE (34 книги, с рекомендациями) ---
+      { id: 'i1', tier: 'Intermediate', title: 'Анна Каренина', author: 'Лев Толстой', country: 'Россия', feature: 'Вершина психологического реализма', rec: 'Рекомендуется освежить контекст пореформенной России 1870-х годов.' },
       { id: 'i2', tier: 'Intermediate', title: 'Исповедь маски', author: 'Юкио Мисима', country: 'Япония', feature: 'Экзистенциальный модернизм', rec: 'Полезно знать основы японской эстетики и философию Ницше.' },
-      { id: 'i3', tier: 'Intermediate', title: 'Хроники Заводной Птицы', author: 'Харуки Мураками', country: 'Япония', feature: 'Сюрреалистический лабиринт', rec: 'Стоит ознакомиться с историей советско-японских конфликтов на Халхин-Голе.' },
+      { id: 'i3', tier: 'Intermediate', title: 'Хроники Заводной Птицы', author: 'Харуки Мураками', country: 'Япония', feature: 'Сюрреалистический лабиринт', rec: 'Стоит ознакомиться с историей советско-японских конфликтов.' },
       { id: 'i4', tier: 'Intermediate', title: 'Степной волк', author: 'Герман Гессе', country: 'Швейцария', feature: 'Интеллектуальный роман', rec: 'Обязательно базовое понимание психоанализа Карла Юнга.' },
-      { id: 'i5', tier: 'Intermediate', title: 'Одиссея', author: 'Гомер', country: 'Древняя Греция', feature: 'Античный эпос', rec: 'Полезно прочитать краткий пересказ «Илиады» и мифов Троянского цикла.' },
-      { id: 'i6', tier: 'Intermediate', title: 'Дон Кихот', author: 'Мигель де Сервантес', country: 'Испания', feature: 'Родоначальник романа', rec: 'Ознакомьтесь с пародируемыми испанскими рыцарскими романами XVI века.' },
+      { id: 'i5', tier: 'Intermediate', title: 'Одиссея', author: 'Гомер', country: 'Древняя Греция', feature: 'Античный эпос', rec: 'Полезно прочитать краткий пересказ «Илиады».' },
+      { id: 'i6', tier: 'Intermediate', title: 'Дон Кихот', author: 'Мигель де Сервантес', country: 'Испания', feature: 'Родоначальник романа', rec: 'Ознакомьтесь с пародируемыми испанскими рыцарскими романами.' },
       { id: 'i7', tier: 'Intermediate', title: 'Лолита', author: 'Владимир Набоков', country: 'США', feature: 'Языковая виртуозность', rec: 'Изучите структуру английского модернизма и стилистики Набокова.' },
       { id: 'i8', tier: 'Intermediate', title: 'Кровавый меридиан', author: 'Кормак Маккарти', country: 'США', feature: 'Философский антивестерн', rec: 'Рекомендуется знать историю мексикано-американской войны.' },
       { id: 'i9', tier: 'Intermediate', title: 'Над гнездом кукушки', author: 'Кен Кизи', country: 'США', feature: 'Контркультурная притча', rec: 'Полезно изучить историю психиатрии середины XX века.' },
       { id: 'i10', tier: 'Intermediate', title: 'Реквием по мечте', author: 'Хьюберт Селби-мл.', country: 'США', feature: 'Радикальный реализм', rec: 'Подготовьтесь к жесткому натурализму без морализаторства.' },
       { id: 'i11', tier: 'Intermediate', title: 'Обломов', author: 'Иван Гончаров', country: 'Россия', feature: 'Философский реализм', rec: 'Полезно почитать статьи Добролюбова («Что такое обломовщина?»).' },
       { id: 'i12', tier: 'Intermediate', title: 'Гамлет', author: 'Уильям Шекспир', country: 'Великобритания', feature: 'Ренессансная трагедия', rec: 'Изучите концепцию мести в елизаветинской драме.' },
-      { id: 'i13', tier: 'Intermediate', title: 'Кафка на пляже', author: 'Харуки Мураками', country: 'Япония', feature: 'Метафизический роман', rec: 'Ознакомьтесь с греческим мифом об Эдипе и японским синтоизмом.' },
+      { id: 'i13', tier: 'Intermediate', title: 'Кафка на пляже', author: 'Харуки Мураками', country: 'Япония', feature: 'Метафизический роман', rec: 'Ознакомьтесь с мифом об Эдипе и японским синтоизмом.' },
       { id: 'i14', tier: 'Intermediate', title: 'Убийство командора', author: 'Харуки Мураками', country: 'Япония', feature: 'Двухтомное полотно', rec: 'Вспомните сюжет «Великого Гэтсби» Фицджеральда.' },
-      { id: 'i15', tier: 'Intermediate', title: 'Доктор Живаго', author: 'Борис Пастернак', country: 'СССР', feature: 'Поэтический роман-эпопея', rec: 'Освежите в памяти хронологию Первой мировой войны и Революции в России.' },
-      { id: 'i16', tier: 'Intermediate', title: 'Мертвые души', author: 'Николай Гоголь', country: 'Россия', feature: 'Поэма в прозе', rec: 'Полезно знать структуру «Божественной комедии» Данте как прообраз.' },
-      { id: 'i17', tier: 'Intermediate', title: 'Братья Ларионовы', author: 'Константин Федин', country: 'СССР', feature: 'Психологическая драма', rec: 'Изучите атмосферу раннего советского быта.' },
-      { id: 'i18', tier: 'Intermediate', title: 'Фауст (Часть 1)', author: 'Иоганн В. фон Гёте', country: 'Германия', feature: 'Философская драма', rec: 'Ознакомьтесь с легендой о докторе Фаусте и средневековой демонологии.' },
-      { id: 'i19', tier: 'Intermediate', title: 'Процесс', author: 'Франц Кафка', country: 'Австро-Венгрия', feature: 'Абсурд и бюрократия', rec: 'Изучите устройство австро-венгерской судебной системы.' },
-      { id: 'i20', tier: 'Intermediate', title: 'Замок', author: 'Франц Кафка', country: 'Австро-Венгрия', feature: 'Незавершенная аллегория', rec: 'Полезно прочитать эссе Вальтера Бенжамина о Кафке.' },
-      { id: 'i21', tier: 'Intermediate', title: 'Имя мне — Красный', author: 'Орхан Памук', country: 'Турция', feature: 'Постмодернистский детектив', rec: 'Изучите османскую миниатюру и историю стамбульских ремесленников.' },
-      { id: 'i22', tier: 'Intermediate', title: 'Бесы', author: 'Федор Достоевский', country: 'Россия', feature: 'Идеологический роман', rec: 'Ознакомьтесь с историей «нечаевского дела» и нигилизма в России.' },
-      { id: 'i23', tier: 'Intermediate', title: 'Идиот', author: 'Федор Достоевский', country: 'Россия', feature: 'Христологический образ', rec: 'Изучите картину Ганса Гольбейна «Мертвый Христос в гробу».' },
-      { id: 'i24', tier: 'Intermediate', title: 'Подросток', author: 'Федор Достоевский', country: 'Россия', feature: 'Роман воспитания', rec: 'Полезно знать концепцию «случайного семейства» в России XIX века.' },
-      { id: 'i25', tier: 'Intermediate', title: 'Жизнь Клима Самгина', author: 'Максим Горький', country: 'СССР', feature: 'Монументальная хроника', rec: 'Ознакомьтесь с историей русской интеллигенции с 1870-х по 1917 год.' },
-      { id: 'i26', tier: 'Intermediate', title: 'Петербург', author: 'Андрей Белый', country: 'Россия', feature: 'Символистский роман', rec: 'Изучите эстетику русского символизма и архитектуру Петербурга.' },
-      { id: 'i27', tier: 'Intermediate', title: 'Пётр Первый', author: 'Алексей Толстой', country: 'СССР', feature: 'Исторический эпос', rec: 'Освежите в памяти петровские реформы.' },
-      { id: 'i28', tier: 'Intermediate', title: 'Дом, в котором...', author: 'Мариам Петросян', country: 'Армения', feature: 'Магический реализм' },
-      { id: 'i29', tier: 'Intermediate', title: 'Жизнь и судьба', author: 'Василий Гроссман', country: 'СССР', feature: 'Эпопея о войне', rec: 'Ознакомьтесь со Сталинградской битвой и идеологией тоталитаризма.' },
-      { id: 'i30', tier: 'Intermediate', title: 'Доктор Фаустус', author: 'Томас Манн', country: 'Германия', feature: 'Интеллектуальная трагедия', rec: 'Изучите теорию музыки Шёнберга и историю немецкого нацизма.' },
-      { id: 'i31', tier: 'Intermediate', title: 'Будденброки', author: 'Томас Манн', country: 'Германия', feature: 'Семейная сага', rec: 'Ознакомьтесь с историей ганзейского купечества.' },
-      { id: 'i32', tier: 'Intermediate', title: 'Смерть в Венеции', author: 'Томас Манн', country: 'Германия', feature: 'Новелла об эстетизме', rec: 'Полезно знать философию Ницше об искусстве и упадке.' },
-      { id: 'i33', tier: 'Intermediate', title: 'Триумфальная арка', author: 'Эрих Мария Ремарк', country: 'Германия', feature: 'Роман эмиграции', rec: 'Изучите жизнь парижских эмигрантов перед Второй мировой.' },
-      { id: 'i34', tier: 'Intermediate', title: 'Черный обелиск', author: 'Эрих Мария Ремарк', country: 'Германия', feature: 'Роман о гиперинфляции', rec: 'Ознакомьтесь с историей Веймарской республики и инфляцией 1923 года.' },
-      { id: 'i35', tier: 'Intermediate', title: 'Обитель', author: 'Захар Прилепин', country: 'Россия', feature: 'Лагерная проза' },
+      { id: 'i15', tier: 'Intermediate', title: 'Доктор Живаго', author: 'Борис Пастернак', country: 'СССР', feature: 'Поэтический роман-эпопея', rec: 'Освежите в памяти хронологию Первой мировой войны и Революции.' },
+      { id: 'i16', tier: 'Intermediate', title: 'Мертвые души', author: 'Николай Гоголь', country: 'Россия', feature: 'Поэма в прозе', rec: 'Полезно знать структуру «Божественной комедии» Данте.' },
+      { id: 'i17', tier: 'Intermediate', title: 'Фауст (Часть 1)', author: 'Иоганн В. фон Гёте', country: 'Германия', feature: 'Философская драма', rec: 'Ознакомьтесь с легендой о докторе Фаусте.' },
+      { id: 'i18', tier: 'Intermediate', title: 'Процесс', author: 'Франц Кафка', country: 'Австро-Венгрия', feature: 'Абсурд и бюрократия', rec: 'Изучите устройство австро-венгерской судебной системы.' },
+      { id: 'i19', tier: 'Intermediate', title: 'Замок', author: 'Франц Кафка', country: 'Австро-Венгрия', feature: 'Незавершенная аллегория', rec: 'Полезно прочитать эссе Вальтера Бенжамина о Кафке.' },
+      { id: 'i20', tier: 'Intermediate', title: 'Имя мне — Красный', author: 'Орхан Памук', country: 'Турция', feature: 'Постмодернистский детектив', rec: 'Изучите османскую миниатюру.' },
+      { id: 'i21', tier: 'Intermediate', title: 'Бесы', author: 'Федор Достоевский', country: 'Россия', feature: 'Идеологический роман', rec: 'Ознакомьтесь с историей «нечаевского дела».' },
+      { id: 'i22', tier: 'Intermediate', title: 'Идиот', author: 'Федор Достоевский', country: 'Россия', feature: 'Христологический образ', rec: 'Изучите картину Ганса Гольбейна «Мертвый Христос в гробу».' },
+      { id: 'i23', tier: 'Intermediate', title: 'Подросток', author: 'Федор Достоевский', country: 'Россия', feature: 'Роман воспитания', rec: 'Полезно знать концепцию «случайного семейства».' },
+      { id: 'i24', tier: 'Intermediate', title: 'Петербург', author: 'Андрей Белый', country: 'Россия', feature: 'Символистский роман', rec: 'Изучите эстетику русского символизма.' },
+      { id: 'i25', tier: 'Intermediate', title: 'Дом, в котором...', author: 'Мариам Петросян', country: 'Армения', feature: 'Магический реализм' },
+      { id: 'i26', tier: 'Intermediate', title: 'Жизнь и судьба', author: 'Василий Гроссман', country: 'СССР', feature: 'Эпопея о войне', rec: 'Ознакомьтесь со Сталинградской битвой.' },
+      { id: 'i27', tier: 'Intermediate', title: 'Доктор Фаустус', author: 'Томас Манн', country: 'Германия', feature: 'Интеллектуальная трагедия', rec: 'Изучите теорию музыки Шёнберга.' },
+      { id: 'i28', tier: 'Intermediate', title: 'Будденброки', author: 'Томас Манн', country: 'Германия', feature: 'Семейная сага', rec: 'Ознакомьтесь с историей ганзейского купечества.' },
+      { id: 'i29', tier: 'Intermediate', title: 'Смерть в Венеции', author: 'Томас Манн', country: 'Германия', feature: 'Новелла об эстетизме', rec: 'Полезно знать философию Ницше об искусстве.' },
+      { id: 'i30', tier: 'Intermediate', title: 'Триумфальная арка', author: 'Эрих Мария Ремарк', country: 'Германия', feature: 'Роман эмиграции', rec: 'Изучите жизнь парижских эмигрантов.' },
+      { id: 'i31', tier: 'Intermediate', title: 'Черный обелиск', author: 'Эрих Мария Ремарк', country: 'Германия', feature: 'Роман о гиперинфляции', rec: 'Ознакомьтесь с инфляцией в Веймарской республике 1923 года.' },
+      { id: 'i32', tier: 'Intermediate', title: 'Обитель', author: 'Захар Прилепин', country: 'Россия', feature: 'Лагерная проза' },
+      { id: 'i33', tier: 'Intermediate', title: 'Мелкий бес', author: 'Федор Сологуб', country: 'Россия', feature: 'Символистский роман', rec: 'Изучите фенотип провинциального декаданса.' },
+      { id: 'i34', tier: 'Intermediate', title: 'Петербургские повести', author: 'Николай Гоголь', country: 'Россия', feature: 'Цикл повестей', rec: 'Ознакомьтесь с мифологией Петербурга.' },
 
-      // --- UPPER-INTERMEDIATE (35 книг, с рекомендациями) ---
-      { id: 'u1', tier: 'Upper-intermediate', title: 'Братья Карамазовы', author: 'Федор Достоевский', country: 'Россия', feature: 'Философская полифония', rec: 'Обязательно изучите аргументы «теодицеи» и главу «Великий инквизитор» в контексте христианской философии.' },
-      { id: 'u2', tier: 'Upper-intermediate', title: 'Тихий Дон', author: 'Михаил Шолохов', country: 'Россия', feature: 'Трагическая эпопея в 4 томах', rec: 'Полезно ознакомиться со словарем донских казачьих диалектов и историей Гражданской войны на Юге России.' },
-      { id: 'u3', tier: 'Upper-intermediate', title: 'Война и мир', author: 'Лев Толстой', country: 'Россия', feature: 'Монументальная эпопея', rec: 'Изучите исторический контекст наполеоновских войн и философские отступления Толстого о фатализме в истории.' },
-      { id: 'u4', tier: 'Upper-intermediate', title: 'Золотой храм', author: 'Юкио Мисима', country: 'Япония', feature: 'Философский модернизм', rec: 'Изучите буддийские коаны и реальную историю сожжения храма Кинкаку-дзи в 1950 году.' },
-      { id: 'u5', tier: 'Upper-intermediate', title: 'Волшебная гора', author: 'Томас Манн', country: 'Германия', feature: 'Философский роман идей', rec: 'Ознакомьтесь с основными течениями европейской мысли начала XX века (гуманизм, романтизм, психоанализ).' },
-      { id: 'u6', tier: 'Upper-intermediate', title: 'Божественная комедия', author: 'Данте Алигьери', country: 'Италия', feature: 'Средневековая сумма', rec: 'Критически необходим подробный комментарий к тексту, объясняющий политику Флоренции XIV века и теологию Фомы Аквинского.' },
-      { id: 'u7', tier: 'Upper-intermediate', title: 'Шум и ярость', author: 'Уильям Фолкнер', country: 'США', feature: 'Высокий модернизм', rec: 'Изучите структуру потока сознания и семейное древо рода Компсонов перед началом чтения первой главы.' },
-      { id: 'u8', tier: 'Upper-intermediate', title: 'Имя розы', author: 'Умберто Эко', country: 'Италия', feature: 'Семиотический лабиринт', rec: 'Полезно освежить в памяти историю средневековых ересей (францисканцы, доминиканцы) и труды Аристотеля.' },
-      { id: 'u9', tier: 'Upper-intermediate', title: 'Фауст (Часть 2)', author: 'Иоганн Вольфганг фон Гёте', country: 'Германия', feature: 'Герметичная мифология', rec: 'Требует основательного знакомства с античной мифологией, алхимией и эстетикой немецкого классицизма.' },
-      { id: 'u10', tier: 'Upper-intermediate', title: 'Гаргантюа и Пантагрюэль', author: 'Франсуа Рабле', country: 'Франция', feature: 'Ренессансная сатира', rec: 'Ознакомьтесь с карнавальной культурой Средневековья и философией гуманизма.' },
-      { id: 'u11', tier: 'Upper-intermediate', title: 'Кентерберийские рассказы', author: 'Джефри Чосер', country: 'Великобритания', feature: 'Средневековый срез общества', rec: 'Изучите сословную структуру Англии XIV века.' },
-      { id: 'u12', tier: 'Upper-intermediate', title: 'Сатирикон', author: 'Петроний Арбитр', country: 'Древний Рим', feature: 'Античный плутовской роман', rec: 'Полезно знать нравы эпохи Нерона и римскую сатиру.' },
-      { id: 'u13', tier: 'Upper-intermediate', title: 'Метаморфозы (Золотой осел)', author: 'Апулей', country: 'Древний Рим', feature: 'Античный роман-притча', rec: 'Ознакомьтесь с культом Исиды и античными мистериями.' },
-      { id: 'u14', tier: 'Upper-intermediate', title: 'Старшая Эдда', author: 'Скандинавский эпос', country: 'Исландия', feature: 'Мифологические песни', rec: 'Изучите германо-скандинавскую мифологию.' },
-      { id: 'u15', tier: 'Upper-intermediate', title: 'Песнь о Нибелунгах', author: 'Неизвестный автор', country: 'Германия', feature: 'Героический эпос', rec: 'Ознакомьтесь с историей великого переселения народов.' },
-      { id: 'u16', tier: 'Upper-intermediate', title: 'Песнь о Роланде', author: 'Неизвестный автор', country: 'Франция', feature: 'Рыцарская поэма', rec: 'Изучите исторический контекст походов Карла Великого в Испанию.' },
-      { id: 'u17', tier: 'Upper-intermediate', title: 'Орландо Фуриозо', author: 'Лудовико Ариосто', country: 'Италия', feature: 'Ренессансная поэма', rec: 'Полезно знать традиции рыцарского романа эпохи Возрождения.' },
-      { id: 'u18', tier: 'Upper-intermediate', title: 'Иерусалим освобожденный', author: 'Торквато Тассо', country: 'Италия', feature: 'Эпическая поэма', rec: 'Изучите историю Первого крестового похода.' },
-      { id: 'u19', tier: 'Upper-intermediate', title: 'Потерянный рай', author: 'Джон Мильтон', country: 'Великобритания', feature: 'Эпическая поэма', rec: 'Ознакомьтесь с пуританской теологией и библейским сюжетом о грехопадении.' },
-      { id: 'u20', tier: 'Upper-intermediate', title: 'Путешествие пилигрима', author: 'Джон Баньян', country: 'Великобритания', feature: 'Аллегорический роман', rec: 'Изучите англиканский нонконформизм XVII века.' },
-      { id: 'u21', tier: 'Upper-intermediate', title: 'Тристан и Изольда', author: 'Готфрид Страсбургский', country: 'Германия', feature: 'Рыцарский роман', rec: 'Ознакомьтесь с концепцией куртуазной любви.' },
-      { id: 'u22', tier: 'Upper-intermediate', title: 'Парцифаль', author: 'Вольфрам фон Эшенбах', country: 'Германия', feature: 'Роман о Граале', rec: 'Изучите цикл артуровских легенд и символику Святого Грааля.' },
-      { id: 'u23', tier: 'Upper-intermediate', title: 'Жизнь Ласарильо с Тормеса', author: 'Неизвестный автор', country: 'Испания', feature: 'Плутовской роман', rec: 'Изучите изнанку испанского общества XVI века.' },
-      { id: 'u24', tier: 'Upper-intermediate', title: 'Монахиня', author: 'Дени Дидро', country: 'Франция', feature: 'Просветительский роман', rec: 'Ознакомьтесь с критикой монастырского быта в эпоху Просвещения.' },
-      { id: 'u25', tier: 'Upper-intermediate', title: 'Жак-фаталист и его хозяин', author: 'Дени Дидро', country: 'Франция', feature: 'Философский антироман', rec: 'Изучите идеи фатализма и детерминизма у Спинозы и Дидро.' },
-      { id: 'u26', tier: 'Upper-intermediate', title: 'Опасные связи', author: 'Пьер Шодерло де Лакло', country: 'Франция', feature: 'Эпистолярный роман', rec: 'Изучите нравы французской аристократии накануне Революции.' },
-      { id: 'u27', tier: 'Upper-intermediate', title: 'Исповедь', author: 'Жан-Жак Руссо', country: 'Франция', feature: 'Автобиография' },
-      { id: 'u28', tier: 'Upper-intermediate', title: 'Вилла на холме', author: 'Ник Хорнби', country: 'Великобритания', feature: 'Сатира' },
-      { id: 'u29', tier: 'Upper-intermediate', title: 'Мелкий бес', author: 'Федор Сологуб', country: 'Россия', feature: 'Символистский роман', rec: 'Изучите фенотип российского провинциального декаданса.' },
-      { id: 'u30', tier: 'Upper-intermediate', title: 'Петербургские повести', author: 'Николай Гоголь', country: 'Россия', feature: 'Цикл повестей', rec: 'Ознакомьтесь с мифологией Петербурга в русской литературе.' },
-      { id: 'u31', tier: 'Upper-intermediate', title: 'Колымские рассказы', author: 'Варлам Шаламов', country: 'СССР', feature: 'Документально-художественная проза', rec: 'Подготовьтесь к предельно жесткому описанию лагерной антропологии.' },
-      { id: 'u32', tier: 'Upper-intermediate', title: 'Архипелаг ГУЛАГ', author: 'Александр Солженицын', country: 'СССР', feature: 'Художественное исследование', rec: 'Изучите структуру стадиев советской пенитенциарной системы.' },
-      { id: 'u33', tier: 'Upper-intermediate', title: 'Красное колесо', author: 'Александр Солженицын', country: 'СССР', feature: 'Узловой исторический роман', rec: 'Ознакомьтесь с февральской революцией 1917 года в деталях.' },
-      { id: 'u34', tier: 'Upper-intermediate', title: 'Домби и сын', author: 'Чарльз Диккенс', country: 'Великобритания', feature: 'Викторианский роман', rec: 'Изучите влияние промышленной революции на семейные устои Англии.' },
-      { id: 'u35', tier: 'Upper-intermediate', title: 'Ярмарка тщеславия', author: 'Уильям Теккерей', country: 'Великобритания', feature: 'Сатирический роман без героя', rec: 'Ознакомьтесь с нравами английского высшего света начала XIX века.' },
+      // --- UPPER-INTERMEDIATE (34 книги, с рекомендациями) ---
+      { id: 'u1', tier: 'Upper-intermediate', title: 'Братья Карамазовы', author: 'Федор Достоевский', country: 'Россия', feature: 'Философская полифония', rec: 'Обязательно изучите аргументы «теодицеи» и главу «Великий инквизитор».' },
+      { id: 'u2', tier: 'Upper-intermediate', title: 'Тихий Дон', author: 'Михаил Шолохов', country: 'Россия', feature: 'Трагическая эпопея в 4 томах', rec: 'Полезно ознакомиться со словарем донских казачьих диалектов.' },
+      { id: 'u3', tier: 'Upper-intermediate', title: 'Война и мир', author: 'Лев Толстой', country: 'Россия', feature: 'Монументальная эпопея', rec: 'Изучите исторический контекст наполеоновских войн.' },
+      { id: 'u4', tier: 'Upper-intermediate', title: 'Золотой храм', author: 'Юкио Мисима', country: 'Япония', feature: 'Философский модернизм', rec: 'Изучите буддийские коаны и историю сожжения храма Кинкаку-дзи.' },
+      { id: 'u5', tier: 'Upper-intermediate', title: 'Волшебная гора', author: 'Томас Манн', country: 'Германия', feature: 'Философский роман идей', rec: 'Ознакомьтесь с течениями европейской мысли начала XX века.' },
+      { id: 'u6', tier: 'Upper-intermediate', title: 'Божественная комедия', author: 'Данте Алигьери', country: 'Италия', feature: 'Средневековая сумма', rec: 'Критически необходим подробный комментарий к тексту.' },
+      { id: 'u7', tier: 'Upper-intermediate', title: 'Шум и ярость', author: 'Уильям Фолкнер', country: 'США', feature: 'Высокий модернизм', rec: 'Изучите структуру потока сознания и семейное древо Компсонов.' },
+      { id: 'u8', tier: 'Upper-intermediate', title: 'Имя розы', author: 'Умберто Эко', country: 'Италия', feature: 'Семиотический лабиринт', rec: 'Полезно освежить в памяти историю средневековых ересей.' },
+      { id: 'u9', tier: 'Upper-intermediate', title: 'Фауст (Часть 2)', author: 'Иоганн Вольфганг фон Гёте', country: 'Германия', feature: 'Герметичная мифология', rec: 'Требуется знакомство с античной мифологией и алхимией.' },
+      { id: 'u10', tier: 'Upper-intermediate', title: 'Гаргантюа и Пантагрюэль', author: 'Франсуа Рабле', country: 'Франция', feature: 'Ренессансная сатира', rec: 'Ознакомьтесь с карнавальной культурой Средневековья.' },
+      { id: 'u11', tier: 'Upper-intermediate', title: 'Кентерберийские рассказы', author: 'Джефри Чосер', country: 'Великобритания', feature: 'Средневековый срез', rec: 'Изучите сословную структуру Англии XIV века.' },
+      { id: 'u12', tier: 'Upper-intermediate', title: 'Сатирикон', author: 'Петроний Арбитр', country: 'Древний Рим', feature: 'Античный плутовской роман', rec: 'Полезно знать нравы эпохи Нерона.' },
+      { id: 'u13', tier: 'Upper-intermediate', title: 'Метаморфозы (Золотой осел)', author: 'Апулей', country: 'Древний Рим', feature: 'Античный роман-притча', rec: 'Ознакомьтесь с культом Исиды.' },
+      { id: 'u14', tier: 'Upper-intermediate', title: 'Песнь о Нибелунгах', author: 'Неизвестный автор', country: 'Германия', feature: 'Героический эпос', rec: 'Ознакомьтесь с великим переселением народов.' },
+      { id: 'u15', tier: 'Upper-intermediate', title: 'Песнь о Роланде', author: 'Неизвестный автор', country: 'Франция', feature: 'Рыцарская поэма', rec: 'Изучите контекст походов Карла Великого.' },
+      { id: 'u16', tier: 'Upper-intermediate', title: 'Потерянный рай', author: 'Джон Мильтон', country: 'Великобритания', feature: 'Эпическая поэма', rec: 'Ознакомьтесь с пуританской теологией.' },
+      { id: 'u17', tier: 'Upper-intermediate', title: 'Тристан и Изольда', author: 'Готфрид Страсбургский', country: 'Германия', feature: 'Рыцарский роман', rec: 'Ознакомьтесь с куртуазной любовью.' },
+      { id: 'u18', tier: 'Upper-intermediate', title: 'Парцифаль', author: 'Вольфрам фон Эшенбах', country: 'Германия', feature: 'Роман о Граале', rec: 'Изучите артуровские легенды.' },
+      { id: 'u19', tier: 'Upper-intermediate', title: 'Опасные связи', author: 'Пьер Шодерло де Лакло', country: 'Франция', feature: 'Эпистолярный роман', rec: 'Изучите нравы французской аристократии.' },
+      { id: 'u20', tier: 'Upper-intermediate', title: 'Исповедь', author: 'Жан-Жак Руссо', country: 'Франция', feature: 'Автобиография' },
+      { id: 'u21', tier: 'Upper-intermediate', title: 'Колымские рассказы', author: 'Варлам Шаламов', country: 'СССР', feature: 'Документальная проза', rec: 'Подготовьтесь к описанию лагерной антропологии.' },
+      { id: 'u22', tier: 'Upper-intermediate', title: 'Архипелаг ГУЛАГ', author: 'Александр Солженицын', country: 'СССР', feature: 'Художественное исследование', rec: 'Изучите структуру пенитенциарной системы.' },
+      { id: 'u23', tier: 'Upper-intermediate', title: 'Красное колесо', author: 'Александр Солженицын', country: 'СССР', feature: 'Исторический роман', rec: 'Ознакомьтесь с февральской революцией 1917 года.' },
+      { id: 'u24', tier: 'Upper-intermediate', title: 'Домби и сын', author: 'Чарльз Диккенс', country: 'Великобритания', feature: 'Викторианский роман', rec: 'Изучите влияние промышленной революции.' },
+      { id: 'u25', tier: 'Upper-intermediate', title: 'Ярмарка тщеславия', author: 'Уильям Теккерей', country: 'Великобритания', feature: 'Сатирический роман', rec: 'Ознакомьтесь с нравами английского света.' },
+      { id: 'u26', tier: 'Upper-intermediate', title: 'Старшая Эдда', author: 'Скандинавский эпос', country: 'Исландия', feature: 'Мифологические песни', rec: 'Изучите германо-скандинавскую мифологию.' },
+      { id: 'u27', tier: 'Upper-intermediate', title: 'Орландо Фуриозо', author: 'Лудовико Ариосто', country: 'Италия', feature: 'Ренессансная поэма' },
+      { id: 'u28', tier: 'Upper-intermediate', title: 'Иерусалим освобожденный', author: 'Торквато Тассо', country: 'Италия', feature: 'Эпическая поэма', rec: 'Изучите историю Первого крестового похода.' },
+      { id: 'u29', tier: 'Upper-intermediate', title: 'Путешествие пилигрима', author: 'Джон Баньян', country: 'Великобритания', feature: 'Аллегория' },
+      { id: 'u30', tier: 'Upper-intermediate', title: 'Жак-фаталист и его хозяин', author: 'Дени Дидро', country: 'Франция', feature: 'Философский антироман', rec: 'Изучите идеи детерминизма.' },
+      { id: 'u31', tier: 'Upper-intermediate', title: 'Монахиня', author: 'Дени Дидро', country: 'Франция', feature: 'Просветительский роман' },
+      { id: 'u32', tier: 'Upper-intermediate', title: 'Вилла на холме', author: 'Ник Хорнби', country: 'Великобритания', feature: 'Сатира' },
+      { id: 'u33', tier: 'Upper-intermediate', title: 'Жизнь Ласарильо с Тормеса', author: 'Неизвестный автор', country: 'Испания', feature: 'Плутовской роман' },
+      { id: 'u34', tier: 'Upper-intermediate', title: 'Песнь о моём Сиде', author: 'Неизвестный автор', country: 'Испания', feature: 'Героический эпос' },
 
-      // --- EXPERT (30 книг, с рекомендациями) ---
-      { id: 'e1', tier: 'Expert', title: 'Улисс', author: 'Джеймс Джойс', country: 'Ирландия', feature: 'Энциклопедия модернизма', rec: 'Обязательно используйте путеводитель-комментарий (например, С. Блюма) параллельно с текстом гомеровской «Одиссеи».' },
-      { id: 'e2', tier: 'Expert', title: 'В поисках утраченного времени', author: 'Марсель Пруст', country: 'Франция', feature: 'Семитомный анализ памяти', rec: 'Рекомендуется изучить философию Бергсона о времени и памяти перед погружением в бесконечные периоды Пруста.' },
-      { id: 'e3', tier: 'Expert', title: 'Радуга тяготения', author: 'Томас Пинчон', country: 'США', feature: 'Постмодернистский колосс', rec: 'Изучите историю баллистики ракет Фау-2, высшую математику вероятностей и паранойю холодной войны.' },
-      { id: 'e4', tier: 'Expert', title: 'Бесконечная шутка', author: 'Дэвид Фостер Уоллес', country: 'США', feature: 'Лабиринт со сносками', rec: 'Подготовьтесь к постоянному переключению на концевые сноски и знанию тенниса с кинематографом.' },
-      { id: 'e5', tier: 'Expert', title: 'Человек без свойств', author: 'Роберт Музиль', country: 'Австрия', feature: 'Роман-эссе на 1000+ страниц', rec: 'Изучите интеллектуальный кризис Австро-Венгрии накануне 1914 года («Какания»).' },
-      { id: 'e6', tier: 'Expert', title: 'Смерть Вергилия', author: 'Герман Брох', country: 'Австрия', feature: 'Гипнотический монолог', rec: 'Ознакомьтесь с античной биографией Вергилия и философией экзистенциализма.' },
-      { id: 'e7', tier: 'Expert', title: 'Ада, или Отрада', author: 'Владимир Набоков', country: 'США', feature: 'Трехъязычные аллюзии', rec: 'Свободно ориентируйтесь в русской, французской и английской поэзии, а также в альтернативной географии Антитерры.' },
-      { id: 'e8', tier: 'Expert', title: 'Махабхарата', author: 'Вьяса (традиц.)', country: 'Древняя Индия', feature: 'Сверхмасштабный эпос', rec: 'Изучите основы индуистской философии (дхарма, карма) и пантеон божеств.' },
-      { id: 'e9', tier: 'Expert', title: 'Белая акация', author: 'Анатолий Мариенгоф', country: 'СССР', feature: 'Имажинистская проза', rec: 'Ознакомьтесь с поэтикой русского имажинизма.' },
-      { id: 'e10', tier: 'Expert', title: 'Книга непокоя', author: 'Фернанду Пессоа', country: 'Португалия', feature: 'Фрагментарный дневник', rec: 'Изучите феномен гетеронимов Пессоа и португальский модернизм.' },
-      { id: 'e11', tier: 'Expert', title: 'Артемидор', author: 'Герман Брох', country: 'Австрия', feature: 'Философская проза' },
-      { id: 'e12', tier: 'Expert', title: 'Записки Мальте Лауридса Бригге', author: 'Райнер Мария Рильке', country: 'Германия', feature: 'Модернистский дневник', rec: 'Прочтите лирику Рильке и эссе об одиночестве в Париже.' },
-      { id: 'e13', tier: 'Expert', title: 'Трагедия человека', author: 'Имре Мадач', country: 'Венгрия', feature: 'Философская драма', rec: 'Сравните с «Фаустом» Гёте и историей цивилизаций.' },
-      { id: 'e14', tier: 'Expert', title: 'Бледный огонь', author: 'Владимир Набоков', country: 'США', feature: 'Роман-поэма с комментарием', rec: 'Изучите жанр литературоведческой мистификации.' },
-      { id: 'e15', tier: 'Expert', title: 'Смерть Аркадия Долгорукова', author: 'Анатолий Найма", country: "Россия', feature: 'Постмодернизм' },
-      { id: 'e16', tier: 'Expert', title: 'Маттеос Павликиан', author: 'Петлитца', country: 'Армения', feature: 'Сложный нарратив' },
-      { id: 'e17', tier: 'Expert', title: 'Дом озарения', author: 'Тони Моррисон', country: 'США', feature: 'Афроамериканский модернизм', rec: 'Изучите историю американского рабства и фольклор.' },
-      { id: 'e18', tier: 'Expert', title: 'Возлюбленная', author: 'Тони Моррисон', country: 'США', feature: 'Магический реализм травмы' },
-      { id: 'e19', tier: 'Expert', title: 'Мелкий павильон', author: 'Роберт Вальзер', country: 'Швейцария', feature: 'Микропроза' },
-      { id: 'e20', tier: 'Expert', title: 'Якоб фон Гунтен', author: 'Роберт Вальзер', country: 'Швейцария', feature: 'Абсурдистский роман', rec: 'Учтите влияние Вальзера на Кафку.' },
-      { id: 'e21', tier: 'Expert', title: 'Патум', author: 'Жозеп Пла', country: 'Испания', feature: 'Каталонский модернизм' },
-      { id: 'e22', tier: 'Expert', title: 'Двенадцать стульев', author: 'Ильф и Петров', country: 'СССР', feature: 'Сатирический роман' },
-      { id: 'e23', tier: 'Expert', title: 'Золотой теленок', author: 'Ильф и Петров', country: 'СССР', feature: 'Плутовская сатира' },
-      { id: 'e24', tier: 'Expert', title: 'Путешествие на край ночи', author: 'Луи-Фердинанд Селин', country: 'Франция', feature: 'Нигилистический манифест', rec: 'Изучите травму Первой мировой войны и опыт работы Селина в колониях.' },
-      { id: 'e25', tier: 'Expert', title: 'Смерть в кредит', author: 'Луи-Фердинанд Селин', country: 'Франция', feature: 'Экспрессионистский поток' },
-      { id: 'e26', tier: 'Expert', title: 'Тошнота', author: 'Жан-Поль Сартр', country: 'Франция', feature: 'Философский манифест', rec: 'Обязательно базовое знание экзистенциалистской феноменологии Сартра.' },
-      { id: 'e27', tier: 'Expert', title: 'Бытие и ничто (отрывки)', author: 'Жан-Поль Сартр', country: 'Франция', feature: 'Философский текст' },
-      { id: 'e28', tier: 'Expert', title: 'Чума', author: 'Альбер Камю', country: 'Франция', feature: 'Аллегорический роман', rec: 'Изучите концепцию абсурда и сопротивления у Камю.' },
-      { id: 'e29', tier: 'Expert', title: 'Падение', author: 'Альбер Камю', country: 'Франция', feature: 'Монолог-исповедь' },
-      { id: 'e30', tier: 'Expert', title: 'Человек бунтующий', author: 'Альбер Камю', country: 'Франция', feature: 'Эссе-трактат' },
+      // --- EXPERT (33 книги, с рекомендациями) ---
+      { id: 'e1', tier: 'Expert', title: 'Улисс', author: 'Джеймс Джойс', country: 'Ирландия', feature: 'Энциклопедия модернизма', rec: 'Используйте комментарии параллельно с гомеровской «Одиссеей».' },
+      { id: 'e2', tier: 'Expert', title: 'В поисках утраченного времени', author: 'Марсель Пруст', country: 'Франция', feature: 'Семитомный анализ памяти', rec: 'Рекомендуется изучить философию Бергсона о времени.' },
+      { id: 'e3', tier: 'Expert', title: 'Радуга тяготения', author: 'Томас Пинчон', country: 'США', feature: 'Постмодернистский колосс', rec: 'Изучите историю баллистики ракет Фау-2 и паранойю холодной войны.' },
+      { id: 'e4', tier: 'Expert', title: 'Бесконечная шутка', author: 'Дэвид Фостер Уоллес', country: 'США', feature: 'Лабиринт со сносками', rec: 'Подготовьтесь к постоянному переключению на концевые сноски.' },
+      { id: 'e5', tier: 'Expert', title: 'Человек без свойств', author: 'Роберт Музиль', country: 'Австрия', feature: 'Роман-эссе на 1000+ страниц', rec: 'Изучите интеллектуальный кризис Австро-Венгрии («Какания»).' },
+      { id: 'e6', tier: 'Expert', title: 'Смерть Вергилия', author: 'Герман Брох', country: 'Австрия', feature: 'Гипнотический монолог', rec: 'Ознакомьтесь с биографией Вергилия и экзистенциализмом.' },
+      { id: 'e7', tier: 'Expert', title: 'Ада, или Отрада', author: 'Владимир Набоков', country: 'США', feature: 'Трехъязычные аллюзии', rec: 'Свободно ориентируйтесь в поэзии и географии Антитерры.' },
+      { id: 'e8', tier: 'Expert', title: 'Махабхарата', author: 'Вьяса (традиц.)', country: 'Древняя Индия', feature: 'Сверхмасштабный эпос', rec: 'Изучите основы индуистской философии (дхарма, карма).' },
+      { id: 'e9', tier: 'Expert', title: 'Книга непокоя', author: 'Фернанду Пессоа', country: 'Португалия', feature: 'Фрагментарный дневник', rec: 'Изучите феномен гетеронимов Пессоа.' },
+      { id: 'e10', tier: 'Expert', title: 'Записки Мальте Лауридса Бригге', author: 'Райнер Мария Рильке', country: 'Германия', feature: 'Модернистский дневник', rec: 'Прочтите лирику Рильке и эссе об одиночестве в Париже.' },
+      { id: 'e11', tier: 'Expert', title: 'Бледный огонь', author: 'Владимир Набоков', country: 'США', feature: 'Роман-поэма с комментарием', rec: 'Изучите жанр литературоведческой мистификации.' },
+      { id: 'e12', tier: 'Expert', title: 'Дом озарения', author: 'Тони Моррисон', country: 'США', feature: 'Афроамериканский модернизм', rec: 'Изучите историю американского рабства.' },
+      { id: 'e13', tier: 'Expert', title: 'Якоб фон Гунтен', author: 'Роберт Вальзер', country: 'Швейцария', feature: 'Абсурдистский роман', rec: 'Учтите влияние Вальзера на Кафку.' },
+      { id: 'e14', tier: 'Expert', title: 'Двенадцать стульев', author: 'Ильф и Петров', country: 'СССР', feature: 'Сатирический роман' },
+      { id: 'e15', tier: 'Expert', title: 'Золотой теленок', author: 'Ильф и Петров', country: 'СССР', feature: 'Плутовская сатира' },
+      { id: 'e16', tier: 'Expert', title: 'Путешествие на край ночи', author: 'Луи-Фердинанд Селин', country: 'Франция', feature: 'Нигилистический манифест', rec: 'Изучите травму Первой мировой войны.' },
+      { id: 'e17', tier: 'Expert', title: 'Смерть в кредит', author: 'Луи-Фердинанд Селин', country: 'Франция', feature: 'Экспрессионистский поток' },
+      { id: 'e18', tier: 'Expert', title: 'Тошнота', author: 'Жан-Поль Сартр', country: 'Франция', feature: 'Философский манифест', rec: 'Обязательно знание феноменологии Сартра.' },
+      { id: 'e19', tier: 'Expert', title: 'Чума', author: 'Альбер Камю', country: 'Франция', feature: 'Аллегорический роман', rec: 'Изучите концепцию абсурда.' },
+      { id: 'e20', tier: 'Expert', title: 'Падение', author: 'Альбер Камю', country: 'Франция', feature: 'Монолог-исповедь' },
+      { id: 'e21', tier: 'Expert', title: 'Человек бунтующий', author: 'Альбер Камю', country: 'Франция', feature: 'Эссе-трактат' },
+      { id: 'e22', tier: 'Expert', title: 'Белая акация', author: 'Анатолий Мариенгоф', country: 'СССР', feature: 'Имажинистская проза' },
+      { id: 'e23', tier: 'Expert', title: 'Артемидор', author: 'Герман Брох', country: 'Австрия', feature: 'Философская проза' },
+      { id: 'e24', tier: 'Expert', title: 'Трагедия человека', author: 'Имре Мадач', country: 'Венгрия', feature: 'Философская драма' },
+      { id: 'e25', tier: 'Expert', title: 'Смерть Аркадия Долгорукова', author: 'Анатолий Найман', country: 'Россия', feature: 'Постмодернизм' },
+      { id: 'e26', tier: 'Expert', title: 'Возлюбленная', author: 'Тони Моррисон', country: 'США', feature: 'Магический реализм травмы' },
+      { id: 'e27', tier: 'Expert', title: 'Мелкий павильон', author: 'Роберт Вальзер', country: 'Швейцария', feature: 'Микропроза' },
+      { id: 'e28', tier: 'Expert', title: 'Патум', author: 'Жозеп Пла', country: 'Испания', feature: 'Каталонский модернизм' },
+      { id: 'e29', tier: 'Expert', title: 'Бытие и ничто (отрывки)', author: 'Жан-Поль Сартр', country: 'Франция', feature: 'Философский текст' },
+      { id: 'e30', tier: 'Expert', title: 'Несовременные соображения', author: 'Фридрих Ницше', country: 'Германия', feature: 'Культуркритика' },
+      { id: 'e31', tier: 'Expert', title: 'По ту сторону добра и зла', author: 'Фридрих Ницше', country: 'Германия', feature: 'Критика морали' },
+      { id: 'e32', tier: 'Expert', title: 'Так говорил Заратустра', author: 'Фридрих Ницше', country: 'Германия', feature: 'Дифирамбическая философия', rec: 'Изучите концепцию сверхчеловека.' },
+      { id: 'e33', tier: 'Expert', title: 'Эссе', author: 'Мишель де Монтень', country: 'Франция', feature: 'Родоначальник эссеистики', rec: 'Погрузитесь в неторопливый самоанализ.' },
 
-      // --- BEAST (30 книг, с рекомендациями) ---
-      { id: 'x1', tier: 'Beast', title: 'Поминки по Финнегану', author: 'Джеймс Джойс', country: 'Ирландия', feature: 'Гибрид 60+ языков', rec: 'Экстремальный предел литературы. Требует знания словаря портманто-слов Джойса, ирландского фольклора и психоанализа снов.' },
-      { id: 'x2', tier: 'Beast', title: 'Сон Цеттеля', author: 'Арно Шмидт', country: 'Германия', feature: '1300 страниц формата А3', rec: 'Типографский монстр в три колонки с шифрами и деконструкцией текстов Эдгара По. Нужна лупа и криптографический склад ума.' },
-      { id: 'x3', tier: 'Beast', title: 'Кантос', author: 'Эзра Паунд', country: 'США', feature: '50-летний поэтический коллаж', rec: 'Плотнейший массив экономики, китайских иероглифов, греческих цитат и личных шифров без единого сюжета.' },
-      { id: 'x4', tier: 'Beast', title: 'Женщины и мужчины', author: 'Джозеф Макэлрой', country: 'США', feature: 'Сверхплотный синтаксис', rec: '1200 страниц квантовой физики, метеорологии и нью-йоркского быта, переплетенных в неразрывный синтаксический узел.' },
-      { id: 'x5', tier: 'Beast', title: 'Жизнь способ употребления', author: 'Жорж Перек', country: 'Франция', feature: 'Комбинаторный роман-пазл', rec: 'Изучите математический алгоритм хода шахматного коня и латинского биквадрата, по которому строго выстроена вся книга.' },
-      { id: 'x6', tier: 'Beast', title: 'Узнавания', author: 'Уильям Гэддис', country: 'США', feature: 'Неатрибутированные диалоги', rec: '950 страниц без указания говорящих в диалогах, наполненных глубочайшей теологической и искусствоведческой эрудицией.' },
-      { id: 'x7', tier: 'Beast', title: 'Эдем, Эдем, Эдем', author: 'Пьер Гийота', country: 'Франция', feature: 'Одно предложение без точек', rec: 'Радикальный авангард, где грамматика подвергается тотальному распаду в потоке алжирского зноя и насилия.' },
-      { id: 'x8', tier: 'Beast', title: 'Артамен, или Великий Кир', author: 'Мадлен и Жорж де Скюдери', country: 'Франция', feature: '13 000 страниц', rec: 'Абсолютный рекордсмен галантно-героического барокко XVII века в 10 томах.' },
-      { id: 'x9', tier: 'Beast', title: 'Трактат о логическом исчислении', author: 'Людвиг Витгенштейн', country: 'Австрия', feature: 'Философский атомизм', rec: 'Потребуется глубокое знание математической логики и аналитической философии.' },
-      { id: 'x10', tier: 'Beast', title: 'Различие и повторение', author: 'Жиль Делёз', country: 'Франция', feature: 'Постструктурализм', rec: 'Изучите историю философии от Спинозы до Ницше и кантовский трансцендентализм.' },
-      { id: 'x11', tier: 'Beast', title: 'Анти-Эдип', author: 'Жиль Делёз, Феликс Гваттари', country: 'Франция', feature: 'Шизоанализ', rec: 'Соедините психоанализ Фрейда с марксизмом и теорией систем.' },
-      { id: 'x12', tier: 'Beast', title: 'Бытие и время', author: 'Мартин Хайдеггер', country: 'Германия', feature: 'Фундаментальная онтология', rec: 'Освойте феноменологию Гуссерля и греческую досократическую философию.' },
-      { id: 'x13', tier: 'Beast', title: 'Система предметов', author: 'Жан Бодрийяр', country: 'Франция', feature: 'Семиотика потребления', rec: 'Изучите структурализм Соссюра и марксистскую политическую экономию.' },
-      { id: 'x14', tier: 'Beast', title: 'Тысяча плато', author: 'Делёз и Гваттари', country: 'Франция', feature: 'Ризоматический трактат', rec: 'Откажитесь от линейного чтения: книгу можно открывать на любой странице.' },
-      { id: 'x15', tier: 'Beast', title: 'Феноменология духа', author: 'Георг В. Ф. Гегель', country: 'Германия', feature: 'Вершина диалектики', rec: 'Требует предельного напряжения абстрактного мышления и знания всей истории философии до XIX века.' },
-      { id: 'x16', tier: 'Beast', title: 'Критика чистого разума', author: 'Иммануил Кант', country: 'Германия', feature: 'Трансцендентальная критицизм', rec: 'Изучите терминологию немецкой классической гносеологии.' },
-      { id: 'x17', tier: 'Beast', title: 'Метафизика', author: 'Аристотель', country: 'Древняя Греция', feature: 'Основы онтологии', rec: 'Учитывайте специфику древнегреческого философского синтаксиса.' },
-      { id: 'x18', tier: 'Beast', title: 'Органон', author: 'Аристотель', country: 'Древняя Греция', feature: 'Логика', rec: 'Изучите правила силлогизмов.' },
-      { id: 'x19', tier: 'Beast', title: 'Этика', author: 'Бенедикт Спиноза', country: 'Нидерланды', feature: 'Геометрический метод', rec: 'Текст написан в форме математических теорем и доказательств.' },
-      { id: 'x20', tier: 'Beast', title: 'Стоические письма', author: 'Сенека', country: 'Древний Рим', feature: 'Философская эпистолография' },
-      { id: 'x21', tier: 'Beast', title: 'Энеады', author: 'Плотин', country: 'Древний Рим', feature: 'Неоплатонизм', rec: 'Изучите концепцию Единого и эманации.' },
-      { id: 'x22', tier: 'Beast', title: 'Сумма теологии', author: 'Фома Аквинский', country: 'Италия', feature: 'Схоластический колосс', rec: 'Ознакомьтесь со схоластическим методом диспутов (quaestio).' },
-      { id: 'x23', tier: 'Beast', title: 'Анатомия меланхолии', author: 'Роберт Бёртон', country: 'Великобритания', feature: 'Энциклопедия депрессии', rec: 'Колоссальный массив цитат из античных и средневековых медиков.' },
-      { id: 'x24', tier: 'Beast', title: 'Трактат о человеческой природе', author: 'Давид Юм', country: 'Шотландия', feature: 'Эмпиризм', rec: 'Изучите шотландское Просвещение и критику причинности.' },
-      { id: 'x25', tier: 'Beast', title: 'Мир как воля и представление', author: 'Артур Шопенгауэр', country: 'Германия', feature: 'Волюнтаризм', rec: 'Ознакомьтесь с влиянием индийской философии (Упанишады) на немецкий пессимизм.' },
-      { id: 'x26', tier: 'Beast', title: 'Так говорил Заратустра', author: 'Фридрих Ницше', country: 'Германия', feature: 'Дифирамбическая философия', rec: 'Изучите библейские стилизации и концепцию сверхчеловека.' },
-      { id: 'x27', tier: 'Beast', title: 'По ту сторону добра и зла', author: 'Фридрих Ницше', country: 'Германия', feature: 'Афористическая критика морали' },
+      // --- BEAST (33 книги, с рекомендациями) ---
+      { id: 'x1', tier: 'Beast', title: 'Поминки по Финнегану', author: 'Джеймс Джойс', country: 'Ирландия', feature: 'Гибрид 60+ языков', rec: 'Экстремальный предел литературы. Требует знания портманто-слов Джойса.' },
+      { id: 'x2', tier: 'Beast', title: 'Сон Цеттеля', author: 'Арно Шмидт', country: 'Германия', feature: '1300 страниц формата А3', rec: 'Типографский монстр в три колонки с деконструкцией Эдгара По.' },
+      { id: 'x3', tier: 'Beast', title: 'Кантос', author: 'Эзра Паунд', country: 'США', feature: '50-летний поэтический коллаж', rec: 'Плотнейший массив экономики, китайских иероглифов и личных шифров.' },
+      { id: 'x4', tier: 'Beast', title: 'Женщины и мужчины', author: 'Джозеф Макэлрой', country: 'США', feature: 'Сверхплотный синтаксис', rec: '1200 страниц квантовой физики, метеорологии и быта.' },
+      { id: 'x5', tier: 'Beast', title: 'Жизнь способ употребления', author: 'Жорж Перек', country: 'Франция', feature: 'Комбинаторный роман-пазл', rec: 'Изучите математический алгоритм хода шахматного коня.' },
+      { id: 'x6', tier: 'Beast', title: 'Узнавания', author: 'Уильям Гэддис', country: 'США', feature: 'Неатрибутированные диалоги', rec: '950 страниц без указания говорящих с теологической эрудицией.' },
+      { id: 'x7', tier: 'Beast', title: 'Эдем, Эдем, Эдем', author: 'Пьер Гийота', country: 'Франция', feature: 'Одно предложение без точек', rec: 'Радикальный авангард с тотальным распадом грамматики.' },
+      { id: 'x8', tier: 'Beast', title: 'Артамен, или Великий Кир', author: 'Мадлен и Жорж де Скюдери', country: 'Франция', feature: '13 000 страниц', rec: 'Рекордсмен галантно-героического барокко XVII века в 10 томах.' },
+      { id: 'x9', tier: 'Beast', title: 'Трактат о логическом исчислении', author: 'Людвиг Витгенштейн', country: 'Австрия', feature: 'Философский атомизм', rec: 'Потребуется знание математической логики.' },
+      { id: 'x10', tier: 'Beast', title: 'Различие и повторение', author: 'Жиль Делёз', country: 'Франция', feature: 'Постструктурализм', rec: 'Изучите историю философии от Спинозы до Ницше.' },
+      { id: 'x11', tier: 'Beast', title: 'Анти-Эдип', author: 'Жиль Делёз, Феликс Гваттари', country: 'Франция', feature: 'Шизоанализ', rec: 'Соедините психоанализ Фрейда с марксизмом.' },
+      { id: 'x12', tier: 'Beast', title: 'Бытие и время', author: 'Мартин Хайдеггер', country: 'Германия', feature: 'Фундаментальная онтология', rec: 'Освойте феноменологию Гуссерля.' },
+      { id: 'x13', tier: 'Beast', title: 'Система предметов', author: 'Жан Бодрийяр', country: 'Франция', feature: 'Семиотика потребления', rec: 'Изучите структурализм Соссюра.' },
+      { id: 'x14', tier: 'Beast', title: 'Тысяча плато', author: 'Делёз и Гваттари', country: 'Франция', feature: 'Ризоматический трактат', rec: 'Откажитесь от линейного чтения.' },
+      { id: 'x15', tier: 'Beast', title: 'Феноменология духа', author: 'Георг В. Ф. Гегель', country: 'Германия', feature: 'Вершина диалектики', rec: 'Требует предельного напряжения абстрактного мышления.' },
+      { id: 'x16', tier: 'Beast', title: 'Критика чистого разума', author: 'Иммануил Кант', country: 'Германия', feature: 'Трансцендентальная критицизм', rec: 'Изучите терминологию немецкой гносеологии.' },
+      { id: 'x17', tier: 'Beast', title: 'Метафизика', author: 'Аристотель', country: 'Древняя Греция', feature: 'Основы онтологии' },
+      { id: 'x18', tier: 'Beast', title: 'Органон', author: 'Аристотель', country: 'Древняя Греция', feature: 'Логика' },
+      { id: 'x19', tier: 'Beast', title: 'Этика', author: 'Бенедикт Спиноза', country: 'Нидерланды', feature: 'Геометрический метод', rec: 'Текст написан в форме математических теорем.' },
+      { id: 'x20', tier: 'Beast', title: 'Стоические письма', author: 'Сенека', country: 'Древний Рим', feature: 'Эпистолография' },
+      { id: 'x21', tier: 'Beast', title: 'Энеады', author: 'Плотин', country: 'Древний Рим', feature: 'Неоплатонизм', rec: 'Изучите концепцию Единого.' },
+      { id: 'x22', tier: 'Beast', title: 'Сумма теологии', author: 'Фома Аквинский', country: 'Италия', feature: 'Схоластический колосс', rec: 'Ознакомьтесь со схоластическим методом диспутов.' },
+      { id: 'x23', tier: 'Beast', title: 'Анатомия меланхолии', author: 'Роберт Бёртон', country: 'Великобритания', feature: 'Энциклопедия депрессии' },
+      { id: 'x24', tier: 'Beast', title: 'Трактат о человеческой природе', author: 'Давид Юм', country: 'Шотландия', feature: 'Эмпиризм' },
+      { id: 'x25', tier: 'Beast', title: 'Мир как воля и представление', author: 'Артур Шопенгауэр', country: 'Германия', feature: 'Волюнтаризм', rec: 'Ознакомьтесь с влиянием индийской философии.' },
+      { id: 'x26', tier: 'Beast', title: 'Рождение трагедии из духа музыки', author: 'Фридрих Ницше', country: 'Германия', feature: 'Эстетический трактат', rec: 'Изучите аполлоническое и дионисийское начала.' },
+      { id: 'x27', tier: 'Beast', title: 'По ту сторону добра и зла', author: 'Фридрих Ницше', country: 'Германия', feature: 'Афористическая критика' },
       { id: 'x28', tier: 'Beast', title: 'Несовременные соображения', author: 'Фридрих Ницше', country: 'Германия', feature: 'Культуркритика' },
-      { id: 'x29', tier: 'Beast', title: 'Рождение трагедии из духа музыки', author: 'Фридрих Ницше', country: 'Германия', feature: 'Эстетический трактат', rec: 'Изучите дихотомию аполлонического и дионисийского начал.' },
-      { id: 'x30', tier: 'Beast', title: 'Эссе', author: 'Мишель де Монтень', country: 'Франция', feature: 'Родоначальник эссеистики', rec: 'Погрузитесь в неторопливый скептический самоанализ эпохи Возрождения.' }
+      { id: 'x29', tier: 'Beast', title: 'Относительность и абсолют', author: 'Анри Бергсон', country: 'Франция', feature: 'Философия интуиции' },
+      { id: 'x30', tier: 'Beast', title: 'Критика диалектического разума', author: 'Жан-Поль Сартр', country: 'Франция', feature: 'Социологическая диалектика' },
+      { id: 'x31', tier: 'Beast', title: 'Слова и вещи', author: 'Мишель Фуко', country: 'Франция', feature: 'Археология гуманитарных наук' },
+      { id: 'x32', tier: 'Beast', title: 'Надзирать и наказывать', author: 'Мишель Фуко', country: 'Франция', feature: 'История тюрьмы' },
+      { id: 'x33', tier: 'Beast', title: 'Психопатология обыденной жизни', author: 'Зигмунд Фрейд', country: 'Австрия', feature: 'Психоанализ' }
     ];
 
-    const STORAGE_KEY = 'lit_canon_200_v1';
+    const STORAGE_KEY = 'lit_canon_200_v2';
     let state = {};
     let activeTier = 'ALL';
     let isViewingShared = false;
@@ -540,7 +540,7 @@
         ` : '';
 
         const recPopupHtml = (b.rec && item.showRec) ? `
-          <div class="mt-2 p-2.5 bg-amber-50/80 border border-amber-200 rounded-lg text-[11px] text-amber-900 leading-snug animate-fadeIn">
+          <div class="mt-2 p-2.5 bg-amber-50/90 border border-amber-200 rounded-lg text-[11px] text-amber-900 leading-snug">
             <div class="font-semibold mb-0.5 flex items-center justify-between">
               <span>Рекомендации перед чтением:</span>
               <button onclick="toggleRec('${b.id}')" class="text-amber-700 hover:text-black">✕</button>
